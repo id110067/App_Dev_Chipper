@@ -11,6 +11,9 @@ import Profile from "./Profile";
 import BuySell from "../components/StartScreen/BuySell"
 import Home from "./BuyerHome";
 import SellerHome from "./SellerHome";
+import Chat from "./Chat";
+import Grocery from "./Grocery";
+import AddGroceryItem from "./AddGroceryItem";
 
 const Stack = createStackNavigator();
 
@@ -33,38 +36,38 @@ function AppLogin() {
 
   if (!user) {
     return (
-        <Stack.Navigator>
-          <Stack.Screen
-            name="Login"
-            component={Login}
-            options={{
-              headerTitle: () => <Header name="Chipper" />,
-              headerStyle: {
-                height: 150,
-                borderBottomLeftRadius: 50,
-                borderBottomRightRadius: 50,
-                backgroundColor: '#000',
-                shadowColor: '#eee',
-                elevation: 25
-              }
-            }}
-          />
-          <Stack.Screen
-            name="Registration"
-            component={Registration}
-            options={{
-              headerTitle: () => <Header name="Chipper" />,
-              headerStyle: {
-                height: 150,
-                borderBottomLeftRadius: 50,
-                borderBottomRightRadius: 50,
-                backgroundColor: '#000',
-                shadowColor: '#eee',
-                elevation: 25
-              }
-            }}
-          />
-        </Stack.Navigator>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Login"
+          component={Login}
+          options={{
+            headerTitle: () => <Header name="Chipper" />,
+            headerStyle: {
+              height: 150,
+              borderBottomLeftRadius: 50,
+              borderBottomRightRadius: 50,
+              backgroundColor: '#000',
+              shadowColor: '#eee',
+              elevation: 25
+            }
+          }}
+        />
+        <Stack.Screen
+          name="Registration"
+          component={Registration}
+          options={{
+            headerTitle: () => <Header name="Chipper" />,
+            headerStyle: {
+              height: 150,
+              borderBottomLeftRadius: 50,
+              borderBottomRightRadius: 50,
+              backgroundColor: '#000',
+              shadowColor: '#eee',
+              elevation: 25
+            }
+          }}
+        />
+      </Stack.Navigator>
     );
   }
 
@@ -85,22 +88,67 @@ function AppLogin() {
           }
         }}
       />
+      <Stack.Screen
+        name="message"
+        component={Chat}
+        options={{
+          headerTitle: () => <Header name="Chat Area" />,
+          headerStyle: {
+            height: 150,
+            borderBottomLeftRadius: 50,
+            borderBottomRightRadius: 50,
+            backgroundColor: '#000',
+            shadowColor: '#eee',
+            elevation: 25
+          }
+        }}
+      />
+      <Stack.Screen
+        name="grocery"
+        component={Grocery}
+        options={{
+          headerTitle: () => <Header name="Grocery" />,
+          headerStyle: {
+            height: 150,
+            borderBottomLeftRadius: 50,
+            borderBottomRightRadius: 50,
+            backgroundColor: '#000',
+            shadowColor: '#eee',
+            elevation: 25
+          }
+        }}
+      />
+      <Stack.Screen
+        name="addGroceryItems"
+        component={AddGroceryItem}
+        options={{
+          headerTitle: () => <Header name="Add Items" />,
+          headerStyle: {
+            height: 150,
+            borderBottomLeftRadius: 50,
+            borderBottomRightRadius: 50,
+            backgroundColor: '#000',
+            shadowColor: '#eee',
+            elevation: 25
+          }
+        }}
+      />
 
-    <Stack.Screen
-          name="BuyerSell"
-          component={SellerHome}
-          options={{
-            headerTitle: () => <Header name="Buy or Sell" />,
-            headerStyle: {
-              height: 150,
-              borderBottomLeftRadius: 50,
-              borderBottomRightRadius: 50,
-              backgroundColor: '#000',
-              shadowColor: '#eee',
-              elevation: 25
-            }
-          }}
-        />
+      <Stack.Screen
+        name="BuyerSell"
+        component={SellerHome}
+        options={{
+          headerTitle: () => <Header name="Home" />,
+          headerStyle: {
+            height: 150,
+            borderBottomLeftRadius: 50,
+            borderBottomRightRadius: 50,
+            backgroundColor: '#000',
+            shadowColor: '#eee',
+            elevation: 25
+          }
+        }}
+      />
 
       <Stack.Screen
         name="BuyerHome"
@@ -122,7 +170,7 @@ function AppLogin() {
         name="Profile"
         component={Profile}
         options={{
-          headerTitle: () => <Header name="Home" />,
+          headerTitle: () => <Header name="Profile" />,
           headerStyle: {
             height: 150,
             borderBottomLeftRadius: 50,
@@ -141,8 +189,8 @@ export default () => {
   return (
     // <ScrollView contentContainerStyle={{ flexGrow: 1 }}></ScrollView>
     // <ScrollView >
-      <NavigationContainer>
-        <AppLogin />
-      </NavigationContainer>
+    <NavigationContainer>
+      <AppLogin />
+    </NavigationContainer>
   )
 }

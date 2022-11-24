@@ -11,11 +11,11 @@ export default function BuyerBottomTabs({navigation}) {
         marginHorizontal: 30,
         justifyContent: "space-between",
       }}
-    >
+    > 
       <Icon icon="home" text="Home" navigation={navigation} pageName='BuyerHome'/>
       <Icon icon="search" text="Browse" navigation={navigation} pageName='BuyerHome'/>
-      <Icon icon="shopping-bag" text="Grocery" navigation={navigation} pageName='BuyerHome'/>
-      <Icon icon="receipt" text="Orders" navigation={navigation} pageName='BuyerHome'/>
+      <Icon icon="facebook-messenger" text="Message" navigation={navigation} pageName='message'/>
+      <Icon icon="shopping-bag" text="Grocery" navigation={navigation} pageName='grocery'/>
       <Icon icon="user" text="Account" navigation={navigation} pageName='Profile'/>
     </View>
   );
