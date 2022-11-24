@@ -13,7 +13,7 @@ export default function BuyerBottomTabs({navigation}) {
       }}
     >
       <Icon icon="home" text="Home" navigation={navigation} pageName='BuyerHome'/>
-      <Icon icon="search" text="Browse" navigation={navigation} pageName='BuyerHome'/>
+      <Icon icon="search" text="Browse" navigation={navigation} pageName='Search'/>
       <Icon icon="shopping-bag" text="Grocery" navigation={navigation} pageName='BuyerHome'/>
       <Icon icon="receipt" text="Orders" navigation={navigation} pageName='BuyerHome'/>
       <Icon icon="user" text="Account" navigation={navigation} pageName='Profile'/>
