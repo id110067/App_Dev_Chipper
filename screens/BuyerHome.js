@@ -7,53 +7,57 @@ import ItemCatalog from "../components/buyerHome/ItemCatalog";
 
 export default function BuyerHome() {
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       <ScrollView>
-        <HomeHeader />
-        <View>
-          <Text
-            style={{
-              fontFamily: "Roboto",
-              fontSize: 18,
-              fontWeight: "bold",
-              marginLeft: "5%",
-              marginTop: "5%",
-            }}
-          >
-            Looking for a protein {'\n'}rich diet?
-          </Text>
+        <View style={{ flex: 1 }}>
+          <HomeHeader />
+          <View>
+            <Text
+              style={{
+                fontFamily: "Roboto",
+                fontSize: 18,
+                fontWeight: "bold",
+                marginLeft: "5%",
+                marginTop: "5%",
+              }}
+            >
+              Looking for a protein {"\n"}rich diet?
+            </Text>
+          </View>
+          <ItemSlider />
+          <View>
+            <Text
+              style={{
+                fontFamily: "Roboto",
+                fontSize: 18,
+                fontWeight: "bold",
+                marginLeft: "5%",
+                marginTop: "5%",
+              }}
+            >
+              Looking for a protein {"\n"}rich diet?
+            </Text>
+          </View>
+          <ItemSlider />
+          <View>
+            <Text
+              style={{
+                fontFamily: "Roboto",
+                fontSize: 18,
+                fontWeight: "bold",
+                marginLeft: "5%",
+                marginTop: "5%",
+              }}
+            >
+              Popular Products For You
+            </Text>
+          </View>
+          <ItemCatalog />
         </View>
-        <ItemSlider />
-        <View>
-          <Text
-            style={{
-              fontFamily: "Roboto",
-              fontSize: 18,
-              fontWeight: "bold",
-              marginLeft: "5%",
-              marginTop: "5%",
-            }}
-          >
-            Looking for a protein {'\n'}rich diet?
-          </Text>
-        </View>
-        <ItemSlider />
-        <View>
-          <Text
-            style={{
-              fontFamily: "Roboto",
-              fontSize: 18,
-              fontWeight: "bold",
-              marginLeft: "5%",
-              marginTop: "5%",
-            }}
-          >
-            Popular Products For You
-          </Text>
-        </View>
-        <ItemCatalog />
-        <BottomTabs />
       </ScrollView>
+      <View>
+        <BottomTabs />
+      </View>
     </View>
   );
 }
