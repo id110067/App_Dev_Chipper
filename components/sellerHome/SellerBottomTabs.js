@@ -21,7 +21,7 @@ export default function BuyerBottomTabs({navigation}) {
 
 const Icon = (props) => (
   <TouchableOpacity
-  onPress={() => {props.navigation.navigate(props.pageName)}}
+  onPress={() => {props.navigation.navigate(props.pageName, {whichProfile: 'seller'})}}
   >
     <View>
       <FontAwesome5
