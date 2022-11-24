@@ -4,29 +4,29 @@ import {
   StyleSheet,
   SafeAreaView,
   TouchableOpacity,
-  Button,
   View,
   Image,
   Alert,
+  ScrollView
 } from "react-native";
 import { firebase } from "../config";
 import profilePhoto from "../assets/profile-photo.png";
 import BuyerBottomTabs from "../components/buyerHome/BuyerBottomTabs";
 import SellerBottomTabs from "../components/sellerHome/SellerBottomTabs";
 
-const Profile = ({ route }) => {
+const Profile = ({ route, navigation}) => {
   if (route.params.whichProfile === "buyer") {
     return (
       <>
         <BuyerProfile />
-        <BuyerBottomTabs />
+        <BuyerBottomTabs navigation={navigation} />
       </>
     );
   } else {
     return (
       <>
         <SellerProfile />
-        <SellerBottomTabs />
+        <SellerBottomTabs navigation={navigation}/>
       </>
     );
   }
@@ -58,9 +58,7 @@ const BuyerProfile = () => {
       .get()
       .then((snapshot) => {
         if (snapshot.exists) {
-          // console.log("Testing >> ", snapshot.data())
           setName(snapshot.data());
-          // console.log("Name >> ", name.firstName)
         } else {
           console.log("does not exist");
         }
@@ -68,79 +66,83 @@ const BuyerProfile = () => {
   }, []);
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={{ position: "absolute", right: 20 }}>
-        <TouchableOpacity
-          onPress={() => {
-            firebase.auth().signOut();
-          }}
-          style={{
-            marginTop: 50,
-            height: 40,
-            width: 100,
-            backgroundColor: "black",
-            alignItems: "center",
-            justifyContent: "center",
-            borderRadius: 10,
-          }}
-        >
-          <Text style={{ fontWeight: "bold", fontSize: 18, color: "orange" }}>
-            Sign Out
-          </Text>
-        </TouchableOpacity>
-      </View>
+    <View style={{ flex: 1 }}>
+    <ScrollView contentInsetAdjustmentBehavior="automatic">
+      <SafeAreaView style={styles.container}>
+        <View style={{ position: "absolute", right: 20 }}>
+          <TouchableOpacity
+            onPress={() => {
+              firebase.auth().signOut();
+            }}
+            style={{
+              marginTop: 50,
+              height: 40,
+              width: 100,
+              backgroundColor: "black",
+              alignItems: "center",
+              justifyContent: "center",
+              borderRadius: 10,
+            }}
+          >
+            <Text style={{ fontWeight: "bold", fontSize: 18, color: "orange" }}>
+              Sign Out
+            </Text>
+          </TouchableOpacity>
+        </View>
 
-      <View
-        style={{
-          position: "relative",
-          top: 100,
-          alignItems: "center",
-          marginTop: "4%",
-        }}
-      >
-        <Image
-          source={profilePhoto}
+        <View
           style={{
-            height: 120,
-            width: 120,
-            borderRadius: 40,
-            marginBottom: "2%",
+            // position: "relative",
+            // top: 100,
+            alignItems: "center",
+            marginTop: "4%",
           }}
-        />
-        <Text style={{ fontSize: 32, fontWeight: "bold" }}>
-          Hello, {name.firstName}
-        </Text>
-        <Text>Age: 20</Text>
-        <Text>Hobby: Playing F1</Text>
-        <Text>Date of Birth: 01/01/2000</Text>
-        <TouchableOpacity
-          onPress={() => Alert.alert("Manage/Edit Profile is pressed")}
-          style={styles.button}
         >
-          <Text style={{ fontWeight: "bold", fontSize: 22, color: "orange" }}>
-            Manage/Edit Profile
+          <Image
+            source={profilePhoto}
+            style={{
+              height: 120,
+              width: 120,
+              borderRadius: 40,
+              marginBottom: "2%",
+            }}
+          />
+          <Text style={{ fontSize: 32, fontWeight: "bold" }}>
+            Hello, {name.firstName}
           </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => Alert.alert("Manage Orders is pressed")}
-          style={styles.button}
-        >
-          <Text style={{ fontWeight: "bold", fontSize: 22, color: "orange" }}>
-            Manage Orders
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            changePassword();
-          }}
-          style={styles.button}
-        >
-          <Text style={{ fontWeight: "bold", fontSize: 22, color: "orange" }}>
-            Change Password
-          </Text>
-        </TouchableOpacity>
-      </View>
-    </SafeAreaView>
+          <Text>Age: 20</Text>
+          <Text>Hobby: Playing F1</Text>
+          <Text>Date of Birth: 01/01/2000</Text>
+          <TouchableOpacity
+            onPress={() => Alert.alert("Manage/Edit Profile is pressed")}
+            style={styles.button}
+          >
+            <Text style={{ fontWeight: "bold", fontSize: 22, color: "orange" }}>
+              Manage/Edit Profile
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => Alert.alert("Manage Orders is pressed")}
+            style={styles.button}
+          >
+            <Text style={{ fontWeight: "bold", fontSize: 22, color: "orange" }}>
+              Manage Orders
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              changePassword();
+            }}
+            style={styles.button}
+          >
+            <Text style={{ fontWeight: "bold", fontSize: 22, color: "orange" }}>
+              Change Password
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </SafeAreaView>
+    </ScrollView>
+    </View>
   );
 };
 
@@ -178,79 +180,83 @@ const SellerProfile = () => {
   }, []);
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={{ position: "absolute", right: 20 }}>
-        <TouchableOpacity
-          onPress={() => {
-            firebase.auth().signOut();
-          }}
-          style={{
-            marginTop: 50,
-            height: 40,
-            width: 100,
-            backgroundColor: "black",
-            alignItems: "center",
-            justifyContent: "center",
-            borderRadius: 10,
-          }}
-        >
-          <Text style={{ fontWeight: "bold", fontSize: 18, color: "orange" }}>
-            Sign Out
-          </Text>
-        </TouchableOpacity>
-      </View>
+    <View style={{ flex: 1 }}>
+    <ScrollView contentInsetAdjustmentBehavior="automatic">
+      <SafeAreaView style={styles.container}>
+        <View style={{ position: "absolute", right: 20 }}>
+          <TouchableOpacity
+            onPress={() => {
+              firebase.auth().signOut();
+            }}
+            style={{
+              marginTop: 50,
+              height: 40,
+              width: 100,
+              backgroundColor: "black",
+              alignItems: "center",
+              justifyContent: "center",
+              borderRadius: 10,
+            }}
+          >
+            <Text style={{ fontWeight: "bold", fontSize: 18, color: "orange" }}>
+              Sign Out
+            </Text>
+          </TouchableOpacity>
+        </View>
 
-      <View
-        style={{
-          position: "relative",
-          top: 100,
-          alignItems: "center",
-          marginTop: "4%",
-        }}
-      >
-        <Image
-          source={profilePhoto}
+        <View
           style={{
-            height: 120,
-            width: 120,
-            borderRadius: 40,
-            marginBottom: "2%",
+            // position: "relative",
+            // top: 100,
+            alignItems: "center",
+            marginTop: "4%",
           }}
-        />
-        <Text style={{ fontSize: 32, fontWeight: "bold" }}>
-          Hello, {name.firstName}
-        </Text>
-        <Text>Age: 20</Text>
-        <Text>Hobby: Playing F1</Text>
-        <Text>Date of Birth: 01/01/2000</Text>
-        <TouchableOpacity
-          onPress={() => Alert.alert("Manage/Edit Profile is pressed")}
-          style={styles.button}
         >
-          <Text style={{ fontWeight: "bold", fontSize: 22, color: "orange" }}>
-            Manage/Edit Profile
+          <Image
+            source={profilePhoto}
+            style={{
+              height: 120,
+              width: 120,
+              borderRadius: 40,
+              marginBottom: "2%",
+            }}
+          />
+          <Text style={{ fontSize: 32, fontWeight: "bold" }}>
+            Hello, {name.firstName}
           </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => Alert.alert("Manage Pickup Orders is pressed")}
-          style={styles.button}
-        >
-          <Text style={{ fontWeight: "bold", fontSize: 22, color: "orange" }}>
-            Manage Pickup Orders
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            changePassword();
-          }}
-          style={styles.button}
-        >
-          <Text style={{ fontWeight: "bold", fontSize: 22, color: "orange" }}>
-            Change Password
-          </Text>
-        </TouchableOpacity>
-      </View>
-    </SafeAreaView>
+          <Text>Age: 20</Text>
+          <Text>Hobby: Playing F1</Text>
+          <Text>Date of Birth: 01/01/2000</Text>
+          <TouchableOpacity
+            onPress={() => Alert.alert("Manage/Edit Profile is pressed")}
+            style={styles.button}
+          >
+            <Text style={{ fontWeight: "bold", fontSize: 22, color: "orange" }}>
+              Manage/Edit Profile
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => Alert.alert("Manage Pickup Orders is pressed")}
+            style={styles.button}
+          >
+            <Text style={{ fontWeight: "bold", fontSize: 22, color: "orange" }}>
+              Manage Pickup Orders
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              changePassword();
+            }}
+            style={styles.button}
+          >
+            <Text style={{ fontWeight: "bold", fontSize: 22, color: "orange" }}>
+              Change Password
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </SafeAreaView>
+    </ScrollView>
+    </View>
   );
 };
 
@@ -267,5 +273,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderRadius: 10,
     alignItems: "center",
+    marginBottom: 20,
   },
 });

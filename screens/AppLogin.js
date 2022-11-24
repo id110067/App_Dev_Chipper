@@ -10,6 +10,9 @@ import Profile from "./Profile";
 import BuySell from "../components/StartScreen/BuySell";
 import Home from "./BuyerHome";
 import SellerHome from "./SellerHome";
+import Chat from "./Chat";
+import Grocery from "./Grocery";
+import AddGroceryItem from "./AddGroceryItem";
 import Search from "./Search";
 
 const Stack = createStackNavigator();
@@ -84,36 +87,82 @@ function AppLogin() {
           },
         }}
       />
-
       <Stack.Screen
-        name="Search"
-        component={Search}
+        name="message"
+        component={Chat}
         options={{
-          headerTitle: () => <Header name="Search" />,
+          headerTitle: () => <Header name="Chat Area" />,
           headerStyle: {
             height: 150,
             borderBottomLeftRadius: 50,
             borderBottomRightRadius: 50,
-            backgroundColor: "#000",
-            shadowColor: "#eee",
-            elevation: 25,
-          },
+            backgroundColor: '#000',
+            shadowColor: '#eee',
+            elevation: 25
+          }
+        }}
+      />
+      <Stack.Screen
+        name="grocery"
+        component={Grocery}
+        options={{
+          headerTitle: () => <Header name="Grocery" />,
+          headerStyle: {
+            height: 150,
+            borderBottomLeftRadius: 50,
+            borderBottomRightRadius: 50,
+            backgroundColor: '#000',
+            shadowColor: '#eee',
+            elevation: 25
+          }
+        }}
+      />
+      <Stack.Screen
+        name="addGroceryItems"
+        component={AddGroceryItem}
+        options={{
+          headerTitle: () => <Header name="Add Items" />,
+          headerStyle: {
+            height: 150,
+            borderBottomLeftRadius: 50,
+            borderBottomRightRadius: 50,
+            backgroundColor: '#000',
+            shadowColor: '#eee',
+            elevation: 25
+          }
         }}
       />
 
-      <Stack.Screen
+
+    <Stack.Screen
         name="BuyerSell"
         component={SellerHome}
         options={{
-          headerTitle: () => <Header name="Buy or Sell" />,
+          headerTitle: () => <Header name="Home" />,
           headerStyle: {
             height: 150,
             borderBottomLeftRadius: 50,
             borderBottomRightRadius: 50,
-            backgroundColor: "#000",
-            shadowColor: "#eee",
-            elevation: 25,
-          },
+            backgroundColor: '#000',
+            shadowColor: '#eee',
+            elevation: 25
+          }
+        }}
+      />
+
+    <Stack.Screen
+        name="search"
+        component={Search}
+        options={{
+          headerTitle: () => <Header name="search" />,
+          headerStyle: {
+            height: 150,
+            borderBottomLeftRadius: 50,
+            borderBottomRightRadius: 50,
+            backgroundColor: '#000',
+            shadowColor: '#eee',
+            elevation: 25
+          }
         }}
       />
 
@@ -137,7 +186,7 @@ function AppLogin() {
         name="Profile"
         component={Profile}
         options={{
-          headerTitle: () => <Header name="Home" />,
+          headerTitle: () => <Header name="Profile" />,
           headerStyle: {
             height: 150,
             borderBottomLeftRadius: 50,
