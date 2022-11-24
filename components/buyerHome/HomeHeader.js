@@ -32,9 +32,6 @@ export default function HomeHeader() {
           Central and Western district
         </Text>
       </View>
-      <Text style={{ fontFamily: "Roboto", fontSize: 18, fontWeight: "bold", marginLeft: '5%', marginTop: '5%' }}>
-        Looking for a protein {'\n'}rich diet?
-      </Text>
     </View>
   )
 }

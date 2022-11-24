@@ -10,14 +10,14 @@ import React from "react";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
-export default function Item(props) {
+export default function BuyerItem(props) {
   return (
     <>
       <Image
         source={{
           uri: props.image,
         }}
-        style={{ width: "100%", height: 250, width: 250 }}
+        style={{ width: "100%", height: props.imageHeight, width: props.imageWidth }}
       />
       <View
         style={{
