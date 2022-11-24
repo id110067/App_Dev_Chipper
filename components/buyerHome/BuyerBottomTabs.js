@@ -12,17 +12,19 @@ export default function BuyerBottomTabs({navigation}) {
         justifyContent: "space-between",
       }}
     >
-      <Icon icon="home" text="Home" />
-      <Icon icon="search" text="Browse" />
-      <Icon icon="shopping-bag" text="Grocery" />
-      <Icon icon="receipt" text="Orders" />
-      <Icon icon="user" text="Account" />
+      <Icon icon="home" text="Home" navigation={navigation} pageName='BuyerHome'/>
+      <Icon icon="search" text="Browse" navigation={navigation} pageName='BuyerHome'/>
+      <Icon icon="shopping-bag" text="Grocery" navigation={navigation} pageName='BuyerHome'/>
+      <Icon icon="receipt" text="Orders" navigation={navigation} pageName='BuyerHome'/>
+      <Icon icon="user" text="Account" navigation={navigation} pageName='Profile'/>
     </View>
   );
 }
 
 const Icon = (props) => (
-  <TouchableOpacity>
+  <TouchableOpacity
+  onPress={() => {props.navigation.navigate(props.pageName)}}
+  >
     <View>
       <FontAwesome5
         name={props.icon}
