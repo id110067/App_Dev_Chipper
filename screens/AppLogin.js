@@ -10,6 +10,7 @@ import Header from "../components/StartScreen/Header";
 import Profile from "./Profile";
 import BuySell from "../components/StartScreen/BuySell"
 import Home from "./BuyerHome";
+import SellerHome from "./SellerHome";
 
 const Stack = createStackNavigator();
 
@@ -69,38 +70,6 @@ function AppLogin() {
 
   return (
     <Stack.Navigator>
-
-      {/* <Stack.Screen
-        name="Profile"
-        component={Profile}
-        options={{ 
-          headerTitle: () => <Header name="Profile" />,
-           headerStyle:{
-            height:150,
-            borderBottomLeftRadius:50,
-            borderBottomRightRadius:50,
-            backgroundColor:'#00e4d0',
-            shadowColor:'#000',
-            elevation:25
-           }
-         }}
-      /> */}
-      {/* <Stack.Screen
-        name="Home"
-        component={Home}
-        options={{
-          headerTitle: () => <Header name="Home" />,
-          headerStyle: {
-            height: 150,
-            borderBottomLeftRadius: 50,
-            borderBottomRightRadius: 50,
-            backgroundColor: '#000',
-            shadowColor: '#eee',
-            elevation: 25
-          }
-        }}
-      />
-    </Stack.Navigator> */}
       <Stack.Screen
         name="BuySell"
         component={BuySell}
@@ -117,24 +86,24 @@ function AppLogin() {
         }}
       />
 
-      <Stack.Screen
-        name="BuyHome"
-        component={Home}
-        options={{
-          headerTitle: () => <Header name="Home" />,
-          headerStyle: {
-            height: 150,
-            borderBottomLeftRadius: 50,
-            borderBottomRightRadius: 50,
-            backgroundColor: '#000',
-            shadowColor: '#eee',
-            elevation: 25
-          }
-        }}
-      />
+    <Stack.Screen
+          name="BuyerSell"
+          component={SellerHome}
+          options={{
+            headerTitle: () => <Header name="Buy or Sell" />,
+            headerStyle: {
+              height: 150,
+              borderBottomLeftRadius: 50,
+              borderBottomRightRadius: 50,
+              backgroundColor: '#000',
+              shadowColor: '#eee',
+              elevation: 25
+            }
+          }}
+        />
 
       <Stack.Screen
-        name="BuySell"
+        name="BuyerHome"
         component={Home}
         options={{
           headerTitle: () => <Header name="Home" />,

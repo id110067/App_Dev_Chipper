@@ -6,12 +6,12 @@ const BuySell = ({ navigation }) => {
     <View style={styles.fixToText} >
         <TouchableOpacity
             style={styles.buttonBuy}
-            onPress={() => {navigation.navigate('BuyHome')}}
+            onPress={() => {navigation.navigate('BuyerHome')}}
         >
             <Text style={{fontWeight:'bold', fontSize:22,}}>Buy</Text>
         </TouchableOpacity>
         <TouchableOpacity
-            onPress={()=> Alert.alert('Left button pressed')}
+            onPress={()=> {navigation.navigate('BuyerSell')}}
             style={styles.buttonSell}
         >
             <Text style={{fontWeight:'bold', fontSize:22, }}>Sell</Text>
