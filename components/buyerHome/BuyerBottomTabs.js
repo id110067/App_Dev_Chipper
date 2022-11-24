@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
-export default function BottomTabs() {
+export default function BuyerBottomTabs() {
   return (
     <View
       style={{
