@@ -8,8 +8,8 @@ import Login from "../components/StartScreen/Login";
 import Registration from "../components/StartScreen/Registration";
 import Header from "../components/StartScreen/Header";
 import Profile from "./Profile";
-import Home from "./Home";
 import BuySell from "../components/StartScreen/BuySell"
+import Home from "./BuyerHome";
 
 const Stack = createStackNavigator();
 
