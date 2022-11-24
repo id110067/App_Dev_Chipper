@@ -1,7 +1,8 @@
-import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native'
-import React, {useState} from 'react'
-import { useNavigation } from '@react-navigation/native'
-import { firebase } from '../../config'
+import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
+import React, {useState} from 'react';
+import { useNavigation } from '@react-navigation/native';
+import { firebase } from '../../config';
+import { ScrollView } from 'react-native';
 
 const Login = () => {
     const navigation = useNavigation()
@@ -28,6 +29,7 @@ const Login = () => {
     }
 
     return (
+      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
       <View style={styles.container}>
         <Text style={{fontWeight:'bold', fontSize:26,}}>
           Login
@@ -51,7 +53,7 @@ const Login = () => {
             onPress={()=>loginUser(email,password)}
             style={styles.button}
         >
-          <Text style={{fontWeight:'bold', fontSize:22}}>Login</Text>
+          <Text style={{fontWeight:'bold', fontSize:22, color:'#fff',}}>Login</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={()=>navigation.navigate('Registration')}
@@ -66,12 +68,13 @@ const Login = () => {
           onPress={()=>{forgetPassword()}}
           style={{marginTop:20,}}
         >
-          <Text style={{fontSize:16, fontWeight:'bold'}}>
+          <Text style={{fontSize:16, fontWeight:'bold', marginBottom: 20,}}>
             Forget Password?
           </Text>
           
         </TouchableOpacity>
       </View>
+      </ScrollView>
     )
 }
 
@@ -97,7 +100,8 @@ const styles = StyleSheet.create({
     marginTop:50,
     height:70,
     width:250,
-    backgroundColor:'#026efd',
+    backgroundColor:'#000',
+    color:'#fff',
     alignItems:'center',
     justifyContent:'center',
     borderRadius:50,

@@ -1,6 +1,7 @@
 import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native'
 import React, {useState} from 'react'
 import { firebase } from '../../config'
+import { ScrollView } from 'react-native'
 
 const Registration = () => {
   const [email, setEmail] = useState('')
@@ -8,38 +9,25 @@ const Registration = () => {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
 
-    registerUser = async (email,password, firstName, lastName) => {
-        await firebase.auth().createUserWithEmailAndPassword(email,password)
-        .then(() => {
-          firebase.auth().currentUser.sendEmailVerification({
-            handleCodeInApp: true,
-            url: 'https://test-88e0d.firebaseapp.com',
-           })
-          .then(() => {
-                alert("Verification Email sent")
-            }).catch((error) => {
-                alert(error)
-            })
-            .then(() => {
-              firebase.firestore().collection("users")
-              .doc(firebase.auth().currentUser.uid)
-              .set({
-                  firstName,
-                  lastName,
-                  email,
-              })
-            })
-            .catch((error) => {
-              alert(error)
+  registerUser = async (email,password, firstName, lastName) => {
+    await firebase.auth().createUserWithEmailAndPassword(email,password)
+    .then(() => {
+          firebase.firestore().collection("users")
+          .doc(firebase.auth().currentUser.uid)
+          .set({
+              firstName,
+              lastName,
+              email,
           })
         })
         .catch((error) => {
-            alert(error)
+          alert(error)
         })
-    }
+}
 
 
   return (
+    <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
     <View style={styles.container}>
         <Text style={{fontWeight:'bold', fontSize:23,}}>
           Register Here!
@@ -74,9 +62,10 @@ const Registration = () => {
             onPress={()=>registerUser(email,password, firstName, lastName)}
             style={styles.button}
         >
-          <Text style={{fontWeight:'bold', fontSize:22}}>Register</Text>
+          <Text style={{fontWeight:'bold', fontSize:22, color:'#fff'}}>Register</Text>
         </TouchableOpacity>
       </View>
+      </ScrollView>
   )
 }
 
@@ -102,9 +91,10 @@ const styles = StyleSheet.create({
     marginTop:50,
     height:70,
     width:250,
-    backgroundColor:'#026efd',
+    backgroundColor:'#000',
     alignItems:'center',
     justifyContent:'center',
     borderRadius:50,
+    marginBottom: 20,
   }
 });
