@@ -1,8 +1,24 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { View, Text } from 'react-native';
+import React, { useState, useEffect } from 'react';
 import Ionicons from "react-native-vector-icons/Ionicons";
+import { firebase } from '../../config';
 
 export default function HomeHeader() {
+  const [name, setName] = useState([]);
+
+  useEffect(() => {
+    firebase.firestore().collection("users").doc(firebase.auth().currentUser.uid).get()
+    .then((snapshot) =>{
+      if(snapshot.exists){
+          setName(snapshot.data())
+          console.log("Name >> ", name.firstName)
+      }
+      else {
+        console.log('does not exist')
+      }
+  })
+  }, [])
+
   return (
     <View>
       <Text
@@ -13,7 +29,7 @@ export default function HomeHeader() {
           marginTop: "5%",
         }}
       >
-        Good Morning, Abdur
+        Good Morning, {name.firstName}
       </Text>
       <View
         style={{

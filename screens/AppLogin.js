@@ -117,6 +117,22 @@ function AppLogin() {
           }
         }}
       />
+
+      <Stack.Screen
+        name="Profile"
+        component={Profile}
+        options={{
+          headerTitle: () => <Header name="Home" />,
+          headerStyle: {
+            height: 150,
+            borderBottomLeftRadius: 50,
+            borderBottomRightRadius: 50,
+            backgroundColor: '#000',
+            shadowColor: '#eee',
+            elevation: 25
+          }
+        }}
+      />
     </Stack.Navigator>
   );
 }
