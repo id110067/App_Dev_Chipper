@@ -7,8 +7,6 @@ import AppLogin from "./screens/AppLogin";
 export default function App() {
   return (
     <SafeAreaView style={GlobalStyles.AndroidSafeArea}>
-      {/* <SplashScreen /> */}
-      {/* <Home /> */}
       <AppLogin />
     </SafeAreaView>
   );
