@@ -51,6 +51,7 @@ export default function ItemSlider() {
               style={{ marginTop: 10, padding: 15, backgroundColor: "white" }}
             >
               <BuyerItem
+                id={item.id}
                 name={item.productName}
                 price={item.price}
                 ordersPlaced={item.quantitySold}
