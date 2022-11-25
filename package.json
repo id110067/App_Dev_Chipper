@@ -1,6 +1,8 @@
 {
   "dependencies": {
     "@expo/webpack-config": "^0.17.2",
+    "@react-native-firebase/app": "^16.4.6",
+    "@react-native-firebase/firestore": "^16.4.6",
     "@react-navigation/native": "^6.0.14",
     "@react-navigation/stack": "^6.3.5",
     "expo": "^47.0.0",
