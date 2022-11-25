@@ -11,7 +11,7 @@ export default function HomeHeader() {
     .then((snapshot) =>{
       if(snapshot.exists){
           setName(snapshot.data())
-          console.log("Name >> ", name.firstName)
+          // console.log("Name >> ", name.firstName)
       }
       else {
         console.log('does not exist')

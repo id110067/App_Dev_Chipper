@@ -1,149 +1,125 @@
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
-import React from 'react';
-import { useForm, Controller } from "react-hook-form";
+import { View, Text, TextInput, TouchableOpacity, Alert } from "react-native";
+import React, { useState, useEffect } from "react";
+// import { useForm, Controller } from "react-hook-form";
 import SellerBottomTabs from "../components/sellerHome/SellerBottomTabs";
+import { firebase } from "../config";
 
-const AddGroceryItem = ({navigation}) => {
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    defaultValues: {
-      search: "",
-    },
-  });
-  const onSubmit = (data) => console.log(data);
+const AddGroceryItem = ({ navigation }) => {
+  const [productName, setProductName] = useState("");
+  const [price, setPrice] = useState();
+  const [quantityAvailable, setQuantityAvailable] = useState();
+  const [image, setImage] = useState("");
+  const [name, setName] = useState([]);
+
+  useEffect(() => {
+    firebase
+      .firestore()
+      .collection("users")
+      .doc(firebase.auth().currentUser.uid)
+      .get()
+      .then((snapshot) => {
+        if (snapshot.exists) {
+          setName(snapshot.data());
+        } else {
+          console.log("does not exist");
+        }
+      });
+  }, []);
+
+  function addProduct() {
+    var product = {
+      image: image,
+      price: parseInt(price),
+      productName: productName,
+      quantityAvailable: parseInt(quantityAvailable),
+      quantitySold: 0,
+      seller: name.firstName,
+    };
+
+    firebase
+      .firestore()
+      .collection("products")
+      .add(product)
+      .then((snapshot) => {
+        product.id = snapshot.id;
+        snapshot.set(product);
+      })
+      .then(() => addComplete(product))
+      .catch((error) => console.log(error));
+  }
+
+  function addComplete() {
+    Alert.alert("Item added successfully!");
+  }
 
   return (
     <View style={{ marginTop: "10%", flex: 1 }}>
       <View style={{ alignItems: "center", flex: 1 }}>
-        <Controller
-          control={control}
-          rules={{
-            required: true,
+        <TextInput
+          style={{
+            borderWidth: 2,
+            borderColor: "black",
+            width: "80%",
+            alignSelf: "center",
+            height: 50,
+            paddingLeft: 10,
+            fontWeight: "bold",
+            marginBottom: "4%",
           }}
-          render={({ field: { onChange, onBlur, value } }) => (
-            <TextInput
-              style={{
-                borderWidth: 2,
-                borderColor: "black",
-                width: "80%",
-                alignSelf: "center",
-                height: 50,
-                paddingLeft: 10,
-                fontWeight: "bold",
-                marginBottom: "4%",
-              }}
-              onBlur={onBlur}
-              onChangeText={onChange}
-              value={value}
-              placeholder="Enter Product Name"
-            />
-          )}
-          name="productName"
+          placeholder="Enter Product Name"
+          value={productName}
+          onChangeText={(text) => setProductName(text)}
         />
-        {errors.search && (
-          <Text style={{ color: "red", marginTop: "2%", marginBottom: "2%" }}>
-            This is required.
-          </Text>
-        )}
+        <TextInput
+          style={{
+            borderWidth: 2,
+            borderColor: "black",
+            width: "80%",
+            alignSelf: "center",
+            height: 50,
+            paddingLeft: 10,
+            fontWeight: "bold",
+            marginBottom: "4%",
+          }}
+          placeholder="Enter Product Quantity"
+          keyboardType="numeric"
+          value={quantityAvailable}
+          onChangeText={(text) => setQuantityAvailable(text)}
+        />
 
-        <Controller
-          control={control}
-          rules={{
-            required: true,
+        <TextInput
+          style={{
+            borderWidth: 2,
+            borderColor: "black",
+            width: "80%",
+            alignSelf: "center",
+            height: 50,
+            paddingLeft: 10,
+            fontWeight: "bold",
+            marginBottom: "4%",
           }}
-          render={({ field: { onChange, onBlur, value } }) => (
-            <TextInput
-              style={{
-                borderWidth: 2,
-                borderColor: "black",
-                width: "80%",
-                alignSelf: "center",
-                height: 50,
-                paddingLeft: 10,
-                fontWeight: "bold",
-                marginBottom: "4%",
-              }}
-              onBlur={onBlur}
-              onChangeText={onChange}
-              value={value}
-              placeholder="Enter Product Quantity"
-            />
-          )}
-          name="productQuantity"
+          placeholder="Add Product Image"
+          value={image}
+          onChangeText={(text) => setImage(text)}
         />
-        {errors.search && (
-          <Text style={{ color: "red", marginTop: "2%", marginBottom: "2%" }}>
-            This is required.
-          </Text>
-        )}
-
-        <Controller
-          control={control}
-          rules={{
-            required: true,
+        <TextInput
+          style={{
+            borderWidth: 2,
+            borderColor: "black",
+            width: "80%",
+            alignSelf: "center",
+            height: 50,
+            paddingLeft: 10,
+            fontWeight: "bold",
+            marginBottom: "4%",
           }}
-          render={({ field: { onChange, onBlur, value } }) => (
-            <TextInput
-              style={{
-                borderWidth: 2,
-                borderColor: "black",
-                width: "80%",
-                alignSelf: "center",
-                height: 50,
-                paddingLeft: 10,
-                fontWeight: "bold",
-                marginBottom: "4%",
-              }}
-              onBlur={onBlur}
-              onChangeText={onChange}
-              value={value}
-              placeholder="Add Product Image"
-            />
-          )}
-          name="productImage"
+          placeholder="Enter Product Price"
+          keyboardType="numeric"
+          value={price}
+          onChangeText={(text) => setPrice(text)}
         />
-        {errors.search && (
-          <Text style={{ color: "red", marginTop: "2%", marginBottom: "2%" }}>
-            This is required.
-          </Text>
-        )}
-
-        <Controller
-          control={control}
-          rules={{
-            required: true,
-          }}
-          render={({ field: { onChange, onBlur, value } }) => (
-            <TextInput
-              style={{
-                borderWidth: 2,
-                borderColor: "black",
-                width: "80%",
-                alignSelf: "center",
-                height: 50,
-                paddingLeft: 10,
-                fontWeight: "bold",
-                marginBottom: "4%",
-              }}
-              onBlur={onBlur}
-              onChangeText={onChange}
-              value={value}
-              placeholder="Enter Product Price"
-            />
-          )}
-          name="productPrice"
-        />
-        {errors.search && (
-          <Text style={{ color: "red", marginTop: "2%", marginBottom: "2%" }}>
-            This is required.
-          </Text>
-        )}
 
         <TouchableOpacity
-          onPress={handleSubmit(onSubmit)}
           style={{
             marginTop: 10,
             height: 50,
@@ -155,6 +131,7 @@ const AddGroceryItem = ({navigation}) => {
             alignItems: "center",
             marginBottom: "5%",
           }}
+          onPress={() => addProduct()}
         >
           <Text style={{ fontWeight: "bold", fontSize: 22, color: "orange" }}>
             Add Product
@@ -162,18 +139,10 @@ const AddGroceryItem = ({navigation}) => {
         </TouchableOpacity>
       </View>
       <View>
-      <SellerBottomTabs navigation={navigation} />
+        <SellerBottomTabs navigation={navigation} />
       </View>
     </View>
-  )
-  // return (
-  //   <View>
-  //   <View>
+  );
+};
 
-  //   </View>
-  //     <SellerBottomTabs navigation={navigation} />
-  //   </View>
-  // )
-}
-
-export default AddGroceryItem
+export default AddGroceryItem;
