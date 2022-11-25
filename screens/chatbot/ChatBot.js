@@ -47,7 +47,6 @@ const ChatBot = ({ navigation }) => {
 
   return (
     <View style={{ flex: 1, marginTop: "5%" }}>
-      <ScrollView>
         <View style={{ flex: 1 }}>
           <FlatList
             style={{ height: '87%', bottom: '3%' }}
@@ -63,7 +62,6 @@ const ChatBot = ({ navigation }) => {
             )}
           />
         </View>
-      </ScrollView>
       <View>
         <View style={styles.typeMsgContainer}>
           <TextInput
