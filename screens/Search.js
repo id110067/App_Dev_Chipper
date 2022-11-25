@@ -63,6 +63,7 @@ export default function Search({ route, navigation }) {
   const onSubmit = (data) => setSearch(data);
 
   useEffect(() => {
+    setSearchedItems([]);
     const filteredItems = items.filter((item) => {
       return item.productName.toLowerCase().includes(search.search.toLowerCase());
     });
