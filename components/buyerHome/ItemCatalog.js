@@ -50,6 +50,7 @@ export default function ItemCatalog() {
             style={{ marginTop: 10, padding: 15, backgroundColor: "white" }}
           >
             <Item
+              id={item.id}
               name={item.productName}
               price={item.price}
               ordersPlaced={item.quantitySold}
