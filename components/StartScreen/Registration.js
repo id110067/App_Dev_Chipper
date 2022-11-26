@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native'
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { firebase } from '../../config'
 import { ScrollView } from 'react-native'
 
@@ -9,63 +9,64 @@ const Registration = () => {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
 
-  registerUser = async (email,password, firstName, lastName) => {
-    await firebase.auth().createUserWithEmailAndPassword(email,password)
-    .then(() => {
-          firebase.firestore().collection("users")
+  registerUser = async (email, password, firstName, lastName) => {
+    await firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then(() => {
+        firebase.firestore().collection("users")
           .doc(firebase.auth().currentUser.uid)
           .set({
-              firstName,
-              lastName,
-              email,
+            firstName,
+            lastName,
+            email,
+            uid: firebase.auth().currentUser.uid,
           })
-        })
-        .catch((error) => {
-          alert(error)
-        })
-}
+      })
+      .catch((error) => {
+        alert(error)
+      })
+  }
 
 
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-    <View style={styles.container}>
-        <Text style={{fontWeight:'bold', fontSize:23,}}>
+      <View style={styles.container}>
+        <Text style={{ fontWeight: 'bold', fontSize: 23, }}>
           Register Here!
         </Text>
-        <View style={{marginTop:40}}>
-          <TextInput style={styles.textInput} 
-              placeholder="First Name" 
-              onChangeText={(firstName) => setFirstName(firstName)}
-              autoCorrect={false}
+        <View style={{ marginTop: 40 }}>
+          <TextInput style={styles.textInput}
+            placeholder="First Name"
+            onChangeText={(firstName) => setFirstName(firstName)}
+            autoCorrect={false}
           />
-          <TextInput style={styles.textInput} 
-            placeholder="Last Name" 
+          <TextInput style={styles.textInput}
+            placeholder="Last Name"
             onChangeText={(lastName) => setLastName(lastName)}
             autoCorrect={false}
           />
-          <TextInput style={styles.textInput} 
-            placeholder="Email" 
+          <TextInput style={styles.textInput}
+            placeholder="Email"
             onChangeText={(email) => setEmail(email)}
             autoCapitalize="none"
             autoCorrect={false}
             keyboardType="email-address"
           />
-          <TextInput style={styles.textInput} 
-            placeholder="Password" 
-            onChangeText={(password)=> setPassword(password)}
+          <TextInput style={styles.textInput}
+            placeholder="Password"
+            onChangeText={(password) => setPassword(password)}
             autoCorrect={false}
             autoCapitalize="none"
             secureTextEntry={true}
           />
         </View>
         <TouchableOpacity
-            onPress={()=>registerUser(email,password, firstName, lastName)}
-            style={styles.button}
+          onPress={() => registerUser(email, password, firstName, lastName)}
+          style={styles.button}
         >
-          <Text style={{fontWeight:'bold', fontSize:22, color:'#fff'}}>Register</Text>
+          <Text style={{ fontWeight: 'bold', fontSize: 22, color: '#fff' }}>Register</Text>
         </TouchableOpacity>
       </View>
-      </ScrollView>
+    </ScrollView>
   )
 }
 
@@ -73,14 +74,14 @@ export default Registration
 
 const styles = StyleSheet.create({
   container: {
-    flex:1,  
-    alignItems:'center',
-    marginTop:80,
+    flex: 1,
+    alignItems: 'center',
+    marginTop: 80,
   },
   textInput: {
     paddingTop: 20,
-    paddingBottom:10,
-    width:400,
+    paddingBottom: 10,
+    width: 400,
     fontSize: 20,
     borderBottomColor: '#000',
     borderBottomWidth: 1,
@@ -88,13 +89,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   button: {
-    marginTop:50,
-    height:70,
-    width:250,
-    backgroundColor:'#000',
-    alignItems:'center',
-    justifyContent:'center',
-    borderRadius:50,
+    marginTop: 50,
+    height: 70,
+    width: 250,
+    backgroundColor: '#000',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 50,
     marginBottom: 20,
   }
 });

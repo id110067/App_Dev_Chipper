@@ -15,6 +15,7 @@ import Grocery from "./Grocery";
 import AddGroceryItem from "./AddGroceryItem";
 import Search from "./Search";
 import ChatBot from "./chatbot/ChatBot";
+import ChatScreen from "./ChatScreen";
 
 const Stack = createStackNavigator();
 
@@ -203,6 +204,22 @@ function AppLogin() {
         component={Profile}
         options={{
           headerTitle: () => <Header name="Profile" />,
+          headerStyle: {
+            height: 150,
+            borderBottomLeftRadius: 50,
+            borderBottomRightRadius: 50,
+            backgroundColor: "#000",
+            shadowColor: "#eee",
+            elevation: 25,
+          },
+        }}
+      />
+
+      <Stack.Screen
+        name="Chats"
+        component={ChatScreen}
+        options={{
+          headerTitle: () => <Header name="ChatScreen" />,
           headerStyle: {
             height: 150,
             borderBottomLeftRadius: 50,
