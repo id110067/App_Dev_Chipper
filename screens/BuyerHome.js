@@ -9,6 +9,7 @@ import * as Location from "expo-location";
 export default function BuyerHome({ navigation }) {
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
+  const [city, setCity] = useState("");
 
   useEffect(() => {
     (async () => {
@@ -22,16 +23,17 @@ export default function BuyerHome({ navigation }) {
       let location = await Location.getCurrentPositionAsync({});
       let address = await Location.reverseGeocodeAsync(location.coords);
       setLocation(location);
-      console.log(address)
+      console.log(address[0].city)
+      setCity(address[0].city)
       console.log(location)
     })();
   }, []);
-
+  
   return (
     <View style={{ flex: 1 }}>
       <ScrollView>
         <View style={{ flex: 1 }}>
-          <HomeHeader />
+          <HomeHeader cityLocation={city}/>
           <View>
             <Text
               style={{

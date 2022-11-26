@@ -3,7 +3,7 @@ import { View, Text } from 'react-native';
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { firebase } from '../../config';
 
-export default function HomeHeader() {
+export default function HomeHeader(props) {
   const [name, setName] = useState([]);
 
   useEffect(() => {
@@ -45,7 +45,7 @@ export default function HomeHeader() {
           style={{ color: "#B2B2B2" }}
         />
         <Text style={{ fontFamily: "Roboto", fontSize: 18, color: "#B2B2B2" }}>
-          Central and Western district
+          {props.cityLocation}
         </Text>
       </View>
     </View>
