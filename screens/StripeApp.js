@@ -34,15 +34,6 @@ const StripeApp = ({ route, navigation }) => {
   today = dd + "/" + mm + "/" + yyyy;
 
   const handleCompleteOrder = () => {
-    var order = {
-      address: address,
-      email: email,
-      mobileNumber: mobile,
-      products: cart,
-      orderTotal: route.params.total / 100,
-      orderDate: today,
-    };
-
     var products = [];
     cart.forEach((item) => {
       products.push({
@@ -54,7 +45,26 @@ const StripeApp = ({ route, navigation }) => {
         image: item.image,
         seller: item.seller,
       });
+      console.log("Quantity Available >> ", item.quantityAvailable)
+      console.log("Quantity >> ", item.quantity)
+      console.log("Quantity placed >> ", item.ordersPlaced)
+      console.log("Quantity Available >> ", item.quantityAvailable - item.quantity)
+      console.log("Quantity Available >> ", typeof item.quantityAvailable)
+      console.log("Quantity >> ", typeof item.quantity)
+      console.log("Quantity placed >> ", typeof item.ordersPlaced)
+      console.log("Quantity Available >> ", typeof (item.quantityAvailable - item.quantity))
     });
+
+    console.log()
+
+    var order = {
+      address: address,
+      email: email,
+      mobileNumber: mobile,
+      products: products,
+      orderTotal: route.params.total / 100,
+      orderDate: today,
+    };
 
     firebase
       .firestore()

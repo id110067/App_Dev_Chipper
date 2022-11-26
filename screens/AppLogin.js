@@ -17,6 +17,8 @@ import Search from "./Search";
 import ChatBot from "./chatbot/ChatBot";
 import StripeApp from "./StripeApp";
 import OrderSuccessful from "./OrderSuccessful";
+import ViewOrders from "./ViewOrders";
+import ManageOrder from "./ManageOrder";
 
 const Stack = createStackNavigator();
 
@@ -220,6 +222,38 @@ function AppLogin() {
         component={StripeApp}
         options={{
           headerTitle: () => <Header name="Stripe Area" />,
+          headerStyle: {
+            height: 150,
+            borderBottomLeftRadius: 50,
+            borderBottomRightRadius: 50,
+            backgroundColor: "#000",
+            shadowColor: "#eee",
+            elevation: 25,
+          },
+        }}
+      />
+
+      <Stack.Screen
+        name="ViewOrders"
+        component={ViewOrders}
+        options={{
+          headerTitle: () => <Header name="ViewOrders" />,
+          headerStyle: {
+            height: 150,
+            borderBottomLeftRadius: 50,
+            borderBottomRightRadius: 50,
+            backgroundColor: "#000",
+            shadowColor: "#eee",
+            elevation: 25,
+          },
+        }}
+      />
+
+      <Stack.Screen
+        name="ManageOrder"
+        component={ManageOrder}
+        options={{
+          headerTitle: () => <Header name="ManageOrder" />,
           headerStyle: {
             height: 150,
             borderBottomLeftRadius: 50,
