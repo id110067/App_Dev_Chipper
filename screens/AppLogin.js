@@ -16,6 +16,10 @@ import AddGroceryItem from "./AddGroceryItem";
 import Search from "./Search";
 import ChatBot from "./chatbot/ChatBot";
 import ChatScreen from "./ChatScreen";
+import StripeApp from "./StripeApp";
+import OrderSuccessful from "./OrderSuccessful";
+import ViewOrders from "./ViewOrders";
+import ManageOrder from "./ManageOrder";
 
 const Stack = createStackNavigator();
 
@@ -98,10 +102,10 @@ function AppLogin() {
             height: 150,
             borderBottomLeftRadius: 50,
             borderBottomRightRadius: 50,
-            backgroundColor: '#000',
-            shadowColor: '#eee',
-            elevation: 25
-          }
+            backgroundColor: "#000",
+            shadowColor: "#eee",
+            elevation: 25,
+          },
         }}
       />
       <Stack.Screen
@@ -113,10 +117,10 @@ function AppLogin() {
             height: 150,
             borderBottomLeftRadius: 50,
             borderBottomRightRadius: 50,
-            backgroundColor: '#000',
-            shadowColor: '#eee',
-            elevation: 25
-          }
+            backgroundColor: "#000",
+            shadowColor: "#eee",
+            elevation: 25,
+          },
         }}
       />
       <Stack.Screen
@@ -128,10 +132,10 @@ function AppLogin() {
             height: 150,
             borderBottomLeftRadius: 50,
             borderBottomRightRadius: 50,
-            backgroundColor: '#000',
-            shadowColor: '#eee',
-            elevation: 25
-          }
+            backgroundColor: "#000",
+            shadowColor: "#eee",
+            elevation: 25,
+          },
         }}
       />
       <Stack.Screen
@@ -143,15 +147,14 @@ function AppLogin() {
             height: 150,
             borderBottomLeftRadius: 50,
             borderBottomRightRadius: 50,
-            backgroundColor: '#000',
-            shadowColor: '#eee',
-            elevation: 25
-          }
+            backgroundColor: "#000",
+            shadowColor: "#eee",
+            elevation: 25,
+          },
         }}
       />
 
-
-    <Stack.Screen
+      <Stack.Screen
         name="BuyerSell"
         component={SellerHome}
         options={{
@@ -160,14 +163,14 @@ function AppLogin() {
             height: 150,
             borderBottomLeftRadius: 50,
             borderBottomRightRadius: 50,
-            backgroundColor: '#000',
-            shadowColor: '#eee',
-            elevation: 25
-          }
+            backgroundColor: "#000",
+            shadowColor: "#eee",
+            elevation: 25,
+          },
         }}
       />
 
-    <Stack.Screen
+      <Stack.Screen
         name="search"
         component={Search}
         options={{
@@ -176,10 +179,26 @@ function AppLogin() {
             height: 150,
             borderBottomLeftRadius: 50,
             borderBottomRightRadius: 50,
-            backgroundColor: '#000',
-            shadowColor: '#eee',
-            elevation: 25
-          }
+            backgroundColor: "#000",
+            shadowColor: "#eee",
+            elevation: 25,
+          },
+        }}
+      />
+
+      <Stack.Screen
+        name="orderSuccessful"
+        component={OrderSuccessful}
+        options={{
+          headerTitle: () => <Header name="orderSuccessful" />,
+          headerStyle: {
+            height: 150,
+            borderBottomLeftRadius: 50,
+            borderBottomRightRadius: 50,
+            backgroundColor: "#000",
+            shadowColor: "#eee",
+            elevation: 25,
+          },
         }}
       />
 
@@ -188,6 +207,54 @@ function AppLogin() {
         component={Home}
         options={{
           headerTitle: () => <Header name="Home" />,
+          headerStyle: {
+            height: 150,
+            borderBottomLeftRadius: 50,
+            borderBottomRightRadius: 50,
+            backgroundColor: "#000",
+            shadowColor: "#eee",
+            elevation: 25,
+          },
+        }}
+      />
+
+      <Stack.Screen
+        name="StripeApp"
+        component={StripeApp}
+        options={{
+          headerTitle: () => <Header name="Stripe Area" />,
+          headerStyle: {
+            height: 150,
+            borderBottomLeftRadius: 50,
+            borderBottomRightRadius: 50,
+            backgroundColor: "#000",
+            shadowColor: "#eee",
+            elevation: 25,
+          },
+        }}
+      />
+
+      <Stack.Screen
+        name="ViewOrders"
+        component={ViewOrders}
+        options={{
+          headerTitle: () => <Header name="ViewOrders" />,
+          headerStyle: {
+            height: 150,
+            borderBottomLeftRadius: 50,
+            borderBottomRightRadius: 50,
+            backgroundColor: "#000",
+            shadowColor: "#eee",
+            elevation: 25,
+          },
+        }}
+      />
+
+      <Stack.Screen
+        name="ManageOrder"
+        component={ManageOrder}
+        options={{
+          headerTitle: () => <Header name="ManageOrder" />,
           headerStyle: {
             height: 150,
             borderBottomLeftRadius: 50,

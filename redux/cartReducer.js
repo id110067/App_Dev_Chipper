@@ -30,7 +30,6 @@ export const cartSlice = createSlice({
             }else{
                 itemInCart.quantity--;
             }
-
         }
     }
 });

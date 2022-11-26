@@ -15,6 +15,7 @@ import {
   removeFromCart,
 } from "../redux/cartReducer";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+const API_URL = "http://10.68.11.73:8004";
 
 const Grocery = ({ navigation }) => {
   const cart = useSelector((state) => state.cart.cart);
@@ -43,6 +44,10 @@ const Grocery = ({ navigation }) => {
     });
     return totalPrice;
   };
+
+  const handleCheckoutClick = () => {
+      navigation.navigate("StripeApp", {total: total*100});
+  }
 
   return (
     <View style={{ flex: 1, marginTop: "5%" }}>
@@ -163,7 +168,9 @@ const Grocery = ({ navigation }) => {
             }}
           >
             <TouchableOpacity
-              onPress={() => Alert.alert("Continue to Checkout is pressed")}
+              onPress={() => {
+                handleCheckoutClick();
+              }}
               style={{
                 marginTop: 10,
                 height: 50,

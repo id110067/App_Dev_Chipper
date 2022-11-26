@@ -54,9 +54,11 @@ export default function ItemCatalog() {
               name={item.productName}
               price={item.price}
               ordersPlaced={item.quantitySold}
+              quantityAvailable={item.quantityAvailable}
               image={item.image}
               imageHeight={250}
               imageWidth={400}
+              seller={item.seller}
             />
           </View>
         </TouchableOpacity>
