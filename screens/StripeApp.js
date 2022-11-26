@@ -26,6 +26,12 @@ const StripeApp = ({ route, navigation }) => {
   const [address, setAddress] = useState("");
   const [mobile, setMobile] = useState("");
   const { confirmPayment, loading } = useConfirmPayment();
+  let orderID = "";
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, "0");
+  var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+  var yyyy = today.getFullYear();
+  today = dd + "/" + mm + "/" + yyyy;
 
   const handleCompleteOrder = () => {
     var order = {
@@ -34,6 +40,7 @@ const StripeApp = ({ route, navigation }) => {
       mobileNumber: mobile,
       products: cart,
       orderTotal: route.params.total / 100,
+      orderDate: today,
     };
 
     var products = [];
@@ -55,6 +62,7 @@ const StripeApp = ({ route, navigation }) => {
       .add(order)
       .then((snapshot) => {
         order.id = snapshot.id;
+        orderID=order.id;
         snapshot.set(order);
       })
       .then(() => {
@@ -74,7 +82,7 @@ const StripeApp = ({ route, navigation }) => {
       })
       .then(() => {
         Alert.alert("Order placed successfully!");
-        navigation.navigate("BuyerHome");
+        navigation.navigate("orderSuccessful", { orderID: orderID });
       })
       .catch((error) => console.log(error));
   };

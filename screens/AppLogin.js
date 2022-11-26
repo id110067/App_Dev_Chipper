@@ -16,6 +16,7 @@ import AddGroceryItem from "./AddGroceryItem";
 import Search from "./Search";
 import ChatBot from "./chatbot/ChatBot";
 import StripeApp from "./StripeApp";
+import OrderSuccessful from "./OrderSuccessful";
 
 const Stack = createStackNavigator();
 
@@ -171,6 +172,22 @@ function AppLogin() {
         component={Search}
         options={{
           headerTitle: () => <Header name="search" />,
+          headerStyle: {
+            height: 150,
+            borderBottomLeftRadius: 50,
+            borderBottomRightRadius: 50,
+            backgroundColor: "#000",
+            shadowColor: "#eee",
+            elevation: 25,
+          },
+        }}
+      />
+
+      <Stack.Screen
+        name="orderSuccessful"
+        component={OrderSuccessful}
+        options={{
+          headerTitle: () => <Header name="orderSuccessful" />,
           headerStyle: {
             height: 150,
             borderBottomLeftRadius: 50,
