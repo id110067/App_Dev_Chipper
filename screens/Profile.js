@@ -18,14 +18,14 @@ const Profile = ({ route, navigation}) => {
   if (route.params.whichProfile === "buyer") {
     return (
       <>
-        <BuyerProfile />
+        <BuyerProfile navigation={navigation} />
         <BuyerBottomTabs navigation={navigation} />
       </>
     );
   } else {
     return (
       <>
-        <SellerProfile />
+        <SellerProfile navigation={navigation} />
         <SellerBottomTabs navigation={navigation}/>
       </>
     );
@@ -34,7 +34,7 @@ const Profile = ({ route, navigation}) => {
 
 export default Profile;
 
-const BuyerProfile = () => {
+const BuyerProfile = ({navigation}) => {
   const [name, setName] = useState([]);
 
   // change the password
@@ -122,7 +122,7 @@ const BuyerProfile = () => {
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => Alert.alert("Manage Orders is pressed")}
+            onPress={() => navigation.navigate("ViewOrders")}
             style={styles.button}
           >
             <Text style={{ fontWeight: "bold", fontSize: 22, color: "orange" }}>
@@ -146,7 +146,7 @@ const BuyerProfile = () => {
   );
 };
 
-const SellerProfile = () => {
+const SellerProfile = ({navigation}) => {
   const [name, setName] = useState([]);
 
   // change the password

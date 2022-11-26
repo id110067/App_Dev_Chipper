@@ -5,7 +5,7 @@ import ItemSlider from "../components/buyerHome/ItemSlider";
 import BottomTabs from "../components/buyerHome/BuyerBottomTabs";
 import ItemCatalog from "../components/buyerHome/ItemCatalog";
 
-export default function BuyerHome({navigation}) {
+export default function BuyerHome({ navigation }) {
   return (
     <View style={{ flex: 1 }}>
       <ScrollView>
@@ -56,7 +56,7 @@ export default function BuyerHome({navigation}) {
         </View>
       </ScrollView>
       <View>
-        <BottomTabs navigation={navigation}/>
+        <BottomTabs navigation={navigation} />
       </View>
     </View>
   );
