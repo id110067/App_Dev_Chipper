@@ -12,18 +12,72 @@ import {
 } from "react-native";
 import { CardField, useConfirmPayment } from "@stripe/stripe-react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { useForm, Controller } from "react-hook-form";
+import { firebase } from "../config";
+import { removeFromCart } from "../redux/cartReducer";
 
 //ADD localhost address of your server
 const API_URL = "http://10.68.11.73:8004";
 
 const StripeApp = ({ route, navigation }) => {
   const cart = useSelector((state) => state.cart.cart);
+  const dispatch = useDispatch();
   const [email, setEmail] = useState();
   const [cardDetails, setCardDetails] = useState();
   const [address, setAddress] = useState("");
   const [mobile, setMobile] = useState("");
   const { confirmPayment, loading } = useConfirmPayment();
+
+  const handleCompleteOrder = () => {
+    var order = {
+      address: address,
+      email: email,
+      mobileNumber: mobile,
+      products: cart,
+      orderTotal: route.params.total / 100,
+    };
+
+    var products = [];
+    cart.forEach((item) => {
+      products.push({
+        id: item.id,
+        quantityAvailable: item.quantityAvailable - item.quantity,
+        quantitySold: item.ordersPlaced + item.quantity,
+        productName: item.name,
+        price: item.price,
+        image: item.image,
+        seller: item.seller,
+      });
+    });
+
+    firebase
+      .firestore()
+      .collection("orders")
+      .add(order)
+      .then((snapshot) => {
+        order.id = snapshot.id;
+        snapshot.set(order);
+      })
+      .then(() => {
+        products.forEach((product) => {
+          firebase
+            .firestore()
+            .collection("products")
+            .doc(product.id)
+            .set(product)
+            .catch((error) => console.log(error));
+        });
+      })
+      .then(() => {
+        cart.forEach((item) => {
+          dispatch(removeFromCart(item));
+        });
+      })
+      .then(() => {
+        Alert.alert("Order placed successfully!");
+        navigation.navigate("BuyerHome");
+      })
+      .catch((error) => console.log(error));
+  };
 
   const fetchPaymentIntentClientSecret = async () => {
     const response = await fetch(`${API_URL}/create-payment-intent`, {
@@ -31,7 +85,7 @@ const StripeApp = ({ route, navigation }) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ total: route.params.total * 100 }),
+      body: JSON.stringify({ total: route.params.total }),
     });
     const { clientSecret, error } = await response.json();
     return { clientSecret, error };
@@ -62,9 +116,7 @@ const StripeApp = ({ route, navigation }) => {
         if (error) {
           alert(`Payment Confirmation Error ${error.message}`);
         } else if (paymentIntent) {
-          alert("Payment Successful");
-          console.log("Payment successful ", paymentIntent);
-          console.log(billingDetails);
+          handleCompleteOrder();
         }
       }
     } catch (e) {
@@ -72,22 +124,6 @@ const StripeApp = ({ route, navigation }) => {
     }
     //3.Confirm the payment with the card details
   };
-
-//   setAddressMobile = () => {
-//     setAddress(data.address);
-//     setMobile(data.mobile);
-//   }
-
-//   const {
-//     control,
-//     handleSubmit,
-//     formState: { errors },
-//   } = useForm({
-//     defaultValues: {
-//     },
-//   });
-//   const onSubmit = (data) => setAddressMobile(data);
-
 
   return (
     <ScrollView>
@@ -162,9 +198,6 @@ const StripeApp = ({ route, navigation }) => {
               >
                 Order Total: $
               </Text>
-              {/* {cart.map((item, index) => (
-
-            )} */}
               <Text
                 style={{
                   position: "absolute",
@@ -180,90 +213,6 @@ const StripeApp = ({ route, navigation }) => {
             </View>
           </View>
         </View>
-        {/* <View style={{ alignItems: "center", flex: 1 }}>
-        <Text>Enter your Address</Text>
-          <Controller
-            control={control}
-            rules={{
-              required: true,
-            }}
-            render={({ field: { onChange, onBlur, value } }) => (
-              <TextInput
-                style={{
-                  borderWidth: 2,
-                  borderColor: "black",
-                  width: "80%",
-                  alignSelf: "center",
-                  height: 50,
-                  paddingLeft: 10,
-                  fontWeight: "bold",
-                  marginBottom: "4%",
-                }}
-                onBlur={onBlur}
-                onChangeText={onChange}
-                value={value}
-                placeholder="Address"
-              />
-            )}
-            name="address"
-          />
-          {errors.search && (
-            <Text style={{ color: "red", marginTop: "2%", marginBottom: "2%" }}>
-              This is required.
-            </Text>
-          )}
-
-          <Text>Enter your Mobile Number</Text>
-          <Controller
-            control={control}
-            rules={{
-              required: true,
-            }}
-            render={({ field: { onChange, onBlur, value } }) => (
-              <TextInput
-                style={{
-                  borderWidth: 2,
-                  borderColor: "black",
-                  width: "80%",
-                  alignSelf: "center",
-                  height: 50,
-                  paddingLeft: 10,
-                  fontWeight: "bold",
-                  marginBottom: "4%",
-                }}
-                onBlur={onBlur}
-                onChangeText={onChange}
-                value={value}
-                placeholder="Mobile Number"
-              />
-            )}
-            name="mobile"
-          />
-          {errors.search && (
-            <Text style={{ color: "red", marginTop: "2%", marginBottom: "2%" }}>
-              This is required.
-            </Text>
-          )}
-
-          <TouchableOpacity
-            onPress={handleSubmit(onSubmit)}
-            style={{
-              marginTop: 10,
-              height: 50,
-              width: 200,
-              backgroundColor: "black",
-              alignItems: "center",
-              justifyContent: "center",
-              borderRadius: 10,
-              alignItems: "center",
-              marginBottom: "5%",
-            }}
-          >
-            <Text style={{ fontWeight: "bold", fontSize: 22, color: "orange" }}>
-              Save
-            </Text>
-          </TouchableOpacity>
-        </View> */}
         <TextInput
           autoCapitalize="none"
           placeholder="E-mail"

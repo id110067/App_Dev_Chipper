@@ -55,9 +55,11 @@ export default function ItemSlider() {
                 name={item.productName}
                 price={item.price}
                 ordersPlaced={item.quantitySold}
+                quantityAvailable={item.quantityAvailable}
                 image={item.image}
                 imageHeight={250}
                 imageWidth={300}
+                seller={item.seller}
               />
             </View>
           </TouchableOpacity>
