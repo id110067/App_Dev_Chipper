@@ -70,10 +70,16 @@ Email: 'u3583070@connect.hku.hk'<br>
 
 ## Features
 
+
+- Registration Page and Login Page (allows users to register using their name, address, phone number+password and login with phone+password.)
+- 2 Interfaces for Users. One for Buyers and One for Sellers (both interfaces are similar but there are minor tweaks. Buyer interface allows buyers to 'chip-in' to purchase items. The seller interface allows sellers to list their products up for sale at particular price and quantity.)
+- Dynamic Discount USP of our product is that as cart quantity increases, the discount increases subsequently
+- Search Feature Search among the catalogue of products available
+- Add to cart page (Allows viewing of products that are added to purchase order)
+- Payment Page (multiple modes of payment supported)
+- Chat Function allows users to chat with other users in their area. 
 - An AI chatbot that will reply to your queries related to the purchase
-- A chat platform so that you can chat with other buyers
-- A place for the seller to put their products for selling
-- a marketplace for buyers to buy necessary stuff on a discount depending on bulk purchase feature.
+
 ## Publishing
 
 - Deploy the native app to the App store and Play store using this guide: [Deployment](https://docs.expo.dev/distribution/app-stores/).
