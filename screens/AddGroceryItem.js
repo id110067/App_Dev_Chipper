@@ -10,6 +10,9 @@ const AddGroceryItem = ({ navigation }) => {
   const [quantityAvailable, setQuantityAvailable] = useState();
   const [image, setImage] = useState("");
   const [name, setName] = useState([]);
+  const [quantityFive, setQuantityFive] = useState();
+  const [quantityTen, setQuantityTen] = useState();
+  const [quantityFifteen, setQuantityFifteen] = useState();
 
   useEffect(() => {
     firebase
@@ -32,7 +35,10 @@ const AddGroceryItem = ({ navigation }) => {
       price: parseInt(price),
       productName: productName,
       quantityAvailable: parseInt(quantityAvailable),
+      quantityFifteen: parseInt(quantityFifteen),
+      quantityFive: parseInt(quantityFive),
       quantitySold: 0,
+      quantityTen: parseInt(quantityTen),
       seller: name.firstName,
     };
 
@@ -50,6 +56,7 @@ const AddGroceryItem = ({ navigation }) => {
 
   function addComplete() {
     Alert.alert("Item added successfully!");
+    navigation.navigate("SellerHome");
   }
 
   return (
@@ -117,6 +124,57 @@ const AddGroceryItem = ({ navigation }) => {
           keyboardType="numeric"
           value={price}
           onChangeText={(text) => setPrice(text)}
+        />
+
+        <TextInput
+          style={{
+            borderWidth: 2,
+            borderColor: "black",
+            width: "80%",
+            alignSelf: "center",
+            height: 50,
+            paddingLeft: 10,
+            fontWeight: "bold",
+            marginBottom: "4%",
+          }}
+          placeholder="Enter Quantity Required for 5% Discount"
+          keyboardType="numeric"
+          value={quantityFive}
+          onChangeText={(text) => setQuantityFive(text)}
+        />
+
+        <TextInput
+          style={{
+            borderWidth: 2,
+            borderColor: "black",
+            width: "80%",
+            alignSelf: "center",
+            height: 50,
+            paddingLeft: 10,
+            fontWeight: "bold",
+            marginBottom: "4%",
+          }}
+          placeholder="Enter Quantity Required for 10% Discount"
+          keyboardType="numeric"
+          value={quantityTen}
+          onChangeText={(text) => setQuantityTen(text)}
+        />
+
+        <TextInput
+          style={{
+            borderWidth: 2,
+            borderColor: "black",
+            width: "80%",
+            alignSelf: "center",
+            height: 50,
+            paddingLeft: 10,
+            fontWeight: "bold",
+            marginBottom: "4%",
+          }}
+          placeholder="Enter Quantity Required for 15% Discount"
+          keyboardType="numeric"
+          value={quantityFifteen}
+          onChangeText={(text) => setQuantityFifteen(text)}
         />
 
         <TouchableOpacity
