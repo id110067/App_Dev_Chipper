@@ -123,7 +123,6 @@ const BuyerProfile = ({ navigation }) => {
 
 
   useEffect(() => {
-    console.log("Profile Url is >> ", pictureUrl)
     if (pictureUrl != "") {
       firebase.firestore().collection("users").doc(firebase.auth().currentUser.uid).update({
         profile: pictureUrl
@@ -135,7 +134,6 @@ const BuyerProfile = ({ navigation }) => {
 
 
   const pickImage = async () => {
-    console.log("I am inside")
     // No permissions request is necessary for launching the image library
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -344,7 +342,6 @@ const SellerProfile = ({ navigation }) => {
   }, [image])
 
   useEffect(() => {
-    console.log("Profile Url is >> ", pictureUrl)
     if (pictureUrl != "") {
       firebase.firestore().collection("users").doc(firebase.auth().currentUser.uid).update({
         profile: pictureUrl
@@ -355,7 +352,6 @@ const SellerProfile = ({ navigation }) => {
   }, [pictureUrl])
 
   const pickImage = async () => {
-    console.log("I am inside")
     // No permissions request is necessary for launching the image library
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,

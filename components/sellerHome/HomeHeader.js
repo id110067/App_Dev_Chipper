@@ -11,7 +11,6 @@ export default function HomeHeader(props) {
     .then((snapshot) =>{
       if(snapshot.exists){
           setName(snapshot.data())
-          // console.log("Name >> ", name.firstName)
       }
       else {
         console.log('does not exist')

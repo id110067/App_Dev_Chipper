@@ -41,7 +41,6 @@ const ChatScreen = ({ user, route }) => {
             sentTo: uid,
             createdAt: new Date()
         }
-        console.log(usermsg.sentBy, usermsg.sentTo, usermsg.createdAt)
 
         setMessages(previousMessages => GiftedChat.append(previousMessages, usermsg))
         const docid = uid > firebase.auth().currentUser.uid ? firebase.auth().currentUser.uid + "-" + uid : uid + "-" + firebase.auth().currentUser.uid
