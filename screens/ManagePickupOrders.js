@@ -30,7 +30,7 @@ export default function ManagePickupOrders({ route, navigation }) {
 
   const arrangePickup = () => {
     Alert.alert("Order Pickup has been Scheduled!");
-    navigation.navigate("ViewOrders");
+    navigation.navigate("ViewPickupOrders");
   };
 
   return (
