@@ -56,7 +56,7 @@ const AddGroceryItem = ({ navigation }) => {
 
   function addComplete() {
     Alert.alert("Item added successfully!");
-    navigation.navigate("SellerHome");
+    navigation.navigate("addItemSuccessful");
   }
 
   return (

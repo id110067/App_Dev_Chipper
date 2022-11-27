@@ -236,7 +236,7 @@ const SellerProfile = ({navigation}) => {
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => Alert.alert("Manage Pickup Orders is pressed")}
+            onPress={() => navigation.navigate("ViewPickupOrders")}
             style={styles.button}
           >
             <Text style={{ fontWeight: "bold", fontSize: 22, color: "orange" }}>

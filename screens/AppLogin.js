@@ -20,6 +20,10 @@ import StripeApp from "./StripeApp";
 import OrderSuccessful from "./OrderSuccessful";
 import ViewOrders from "./ViewOrders";
 import ManageOrder from "./ManageOrder";
+import AddItemSuccessful from "./AddItemSuccessful";
+import ViewPickupOrders from "./ViewPickupOrders";
+import ManagePickupOrders from "./ManagePickupOrders";
+import PickupSuccessful from "./PickupSuccessful";
 
 const Stack = createStackNavigator();
 
@@ -203,6 +207,22 @@ function AppLogin() {
       />
 
       <Stack.Screen
+        name="addItemSuccessful"
+        component={AddItemSuccessful}
+        options={{
+          headerTitle: () => <Header name="AddItemSuccessful" />,
+          headerStyle: {
+            height: 150,
+            borderBottomLeftRadius: 50,
+            borderBottomRightRadius: 50,
+            backgroundColor: "#000",
+            shadowColor: "#eee",
+            elevation: 25,
+          },
+        }}
+      />
+
+      <Stack.Screen
         name="BuyerHome"
         component={Home}
         options={{
@@ -255,6 +275,54 @@ function AppLogin() {
         component={ManageOrder}
         options={{
           headerTitle: () => <Header name="ManageOrder" />,
+          headerStyle: {
+            height: 150,
+            borderBottomLeftRadius: 50,
+            borderBottomRightRadius: 50,
+            backgroundColor: "#000",
+            shadowColor: "#eee",
+            elevation: 25,
+          },
+        }}
+      />
+
+      <Stack.Screen
+        name="ViewPickupOrders"
+        component={ViewPickupOrders}
+        options={{
+          headerTitle: () => <Header name="ViewPickupOrders" />,
+          headerStyle: {
+            height: 150,
+            borderBottomLeftRadius: 50,
+            borderBottomRightRadius: 50,
+            backgroundColor: "#000",
+            shadowColor: "#eee",
+            elevation: 25,
+          },
+        }}
+      />
+
+      <Stack.Screen
+        name="ManagePickupOrders"
+        component={ManagePickupOrders}
+        options={{
+          headerTitle: () => <Header name="ManagePickupOrders" />,
+          headerStyle: {
+            height: 150,
+            borderBottomLeftRadius: 50,
+            borderBottomRightRadius: 50,
+            backgroundColor: "#000",
+            shadowColor: "#eee",
+            elevation: 25,
+          },
+        }}
+      />
+
+      <Stack.Screen
+        name="PickupSuccessful"
+        component={PickupSuccessful}
+        options={{
+          headerTitle: () => <Header name="PickupSuccessful" />,
           headerStyle: {
             height: 150,
             borderBottomLeftRadius: 50,

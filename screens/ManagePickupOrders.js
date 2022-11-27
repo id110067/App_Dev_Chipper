@@ -7,10 +7,10 @@ import {
   Alert,
 } from "react-native";
 import React, { useState, useEffect } from "react";
-import BuyerBottomTabs from "../components/buyerHome/BuyerBottomTabs";
+import SellerBottomTabs from "../components/sellerHome/SellerBottomTabs";
 import { firebase } from "../config";
 
-export default function ManageOrder({ route, navigation }) {
+export default function ManagePickupOrders({ route, navigation }) {
   console.log(route.params.item);
   const [name, setName] = useState([]);
 
@@ -30,46 +30,10 @@ export default function ManageOrder({ route, navigation }) {
       });
   }, []);
 
-  const cancelOrder = () => {
-    var items = [];
-    route.params.item.products.forEach((item) => {
-      items.push({
-        id: item.id,
-        quantityAvailable: item.quantityAvailable + item.quantitySold,
-        quantitySold: item.quantitySold - item.quantitySold,
-        productName: item.productName,
-        price: item.price,
-        image: item.image,
-        seller: item.seller,
-        quantityFive: item.quantityFive,
-        quantityTen: item.quantityTen,
-        quantityFifteen: item.quantityFifteen,
-      });
-    });
-
-    items
-      .forEach((product) => {
-        firebase
-          .firestore()
-          .collection("products")
-          .doc(product.id)
-          .set(product)
-          .catch((error) => console.log(error));
-      })
-
-        firebase
-          .firestore()
-          .collection("orders")
-          .doc(route.params.item.id)
-          .delete()
-          .then(handleCancel())
-          .catch((error) => console.log(error));
+  const arrangePickup = () => {
+    Alert.alert("Order Pickup has been Scheduled!");
+    navigation.navigate("ViewOrders");
   };
-
-  const handleCancel = () => {
-    Alert.alert("Order cancelled!")
-    navigation.navigate("ViewOrders")
-  }
 
   return (
     <View style={{ flex: 1, marginTop: "5%" }}>
@@ -231,19 +195,19 @@ export default function ManageOrder({ route, navigation }) {
                 justifyContent: "center",
                 borderRadius: 10,
               }}
-              onPress={() => cancelOrder()}
+              onPress={() => arrangePickup()}
             >
               <Text
                 style={{ fontWeight: "bold", fontSize: 18, color: "orange" }}
               >
-                Cancel Order
+                Arrange Pickup
               </Text>
             </TouchableOpacity>
           </View>
         </View>
       </ScrollView>
       <View>
-        <BuyerBottomTabs navigation={navigation} />
+        <SellerBottomTabs navigation={navigation} />
       </View>
     </View>
   );

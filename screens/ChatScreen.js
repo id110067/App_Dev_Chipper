@@ -31,7 +31,7 @@ const ChatScreen = ({ user, route }) => {
 
     useEffect(() => {
         getAllMessages()
-    }, []);
+    }, [messages]);
 
     const onSend = (msgArray) => {
         const msg = msgArray[0]

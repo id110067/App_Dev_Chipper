@@ -19,8 +19,29 @@ const API_URL = "http://10.68.11.73:8004";
 
 const Grocery = ({ navigation }) => {
   const cart = useSelector((state) => state.cart.cart);
+  // console.log(cart)
   const dispatch = useDispatch();
   const [total, setTotal] = useState(0);
+  
+  const displayTotal = () => {
+    let total = 0;
+    cart.forEach((item) => {
+      console.log("item", item)
+      if (item.ordersPlaced + item.quantity >= item.quantityFifteen) {
+        total += (item.priceFifteen * item.quantity);
+      }
+      else if (item.ordersPlaced + item.quantity >= item.quantityTen) {
+        total += (item.priceTen * item.quantity);
+      }
+      else if (item.ordersPlaced + item.quantity >= item.quantityFive) {
+        total += (item.priceFive * item.quantity);
+      }
+      else {
+        total += (item.price * item.quantity);
+      }
+    });
+    return total;
+  }
 
   const increaseQuantity = (item) => {
     dispatch(incrementQuantity(item));
@@ -46,7 +67,7 @@ const Grocery = ({ navigation }) => {
   };
 
   const handleCheckoutClick = () => {
-      navigation.navigate("StripeApp", {total: total*100});
+      navigation.navigate("StripeApp", {total: displayTotal() * 100});
   }
 
   return (
@@ -143,9 +164,6 @@ const Grocery = ({ navigation }) => {
             >
               Order Total: $
             </Text>
-            {/* {cart.map((item, index) => (
-
-            )} */}
             <Text
               style={{
                 position: "absolute",
@@ -156,7 +174,7 @@ const Grocery = ({ navigation }) => {
                 top: 15,
               }}
             >
-              {total}
+              {displayTotal()}
             </Text>
           </View>
           <View

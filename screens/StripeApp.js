@@ -44,15 +44,10 @@ const StripeApp = ({ route, navigation }) => {
         price: item.price,
         image: item.image,
         seller: item.seller,
+        quantityFive: item.quantityFive,
+        quantityTen: item.quantityTen,
+        quantityFifteen: item.quantityFifteen,
       });
-      console.log("Quantity Available >> ", item.quantityAvailable)
-      console.log("Quantity >> ", item.quantity)
-      console.log("Quantity placed >> ", item.ordersPlaced)
-      console.log("Quantity Available >> ", item.quantityAvailable - item.quantity)
-      console.log("Quantity Available >> ", typeof item.quantityAvailable)
-      console.log("Quantity >> ", typeof item.quantity)
-      console.log("Quantity placed >> ", typeof item.ordersPlaced)
-      console.log("Quantity Available >> ", typeof (item.quantityAvailable - item.quantity))
     });
 
     console.log()
