@@ -19,7 +19,6 @@ const API_URL = "http://10.68.11.73:8004";
 
 const Grocery = ({ navigation }) => {
   const cart = useSelector((state) => state.cart.cart);
-  // console.log(cart)
   const dispatch = useDispatch();
   const [total, setTotal] = useState(0);
   

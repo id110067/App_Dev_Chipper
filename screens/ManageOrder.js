@@ -11,7 +11,6 @@ import BuyerBottomTabs from "../components/buyerHome/BuyerBottomTabs";
 import { firebase } from "../config";
 
 export default function ManageOrder({ route, navigation }) {
-  console.log(route.params.item);
   const [name, setName] = useState([]);
 
   useEffect(() => {
@@ -23,7 +22,6 @@ export default function ManageOrder({ route, navigation }) {
       .then((snapshot) => {
         if (snapshot.exists) {
           setName(snapshot.data());
-          console.log("Name >> ", name.firstName);
         } else {
           console.log("does not exist");
         }

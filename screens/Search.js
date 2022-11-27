@@ -70,8 +70,6 @@ export default function Search({ route, navigation }) {
     setSearchedItems(filteredItems);
   }, [search]);
 
-  console.log(searchedItems);
-
   return (
     <View style={{ marginTop: "10%", flex: 1 }}>
       <View style={{ alignItems: "center", flex: 1 }}>

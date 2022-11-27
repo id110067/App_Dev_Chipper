@@ -11,7 +11,6 @@ import SellerBottomTabs from "../components/sellerHome/SellerBottomTabs";
 import { firebase } from "../config";
 
 export default function ManagePickupOrders({ route, navigation }) {
-  console.log(route.params.item);
   const [name, setName] = useState([]);
 
   useEffect(() => {
@@ -23,7 +22,6 @@ export default function ManagePickupOrders({ route, navigation }) {
       .then((snapshot) => {
         if (snapshot.exists) {
           setName(snapshot.data());
-          console.log("Name >> ", name.firstName);
         } else {
           console.log("does not exist");
         }
