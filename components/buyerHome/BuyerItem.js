@@ -48,7 +48,7 @@ export default function BuyerItem(props) {
   };
 
   return (
-    <>
+    <View>
       <Image
         source={{
           uri: props.image,
@@ -57,6 +57,8 @@ export default function BuyerItem(props) {
           width: "100%",
           height: props.imageHeight,
           width: props.imageWidth,
+          paddingRight: '10%',
+          borderRadius: 10,
         }}
       />
       <View
@@ -88,18 +90,17 @@ export default function BuyerItem(props) {
           <TouchableOpacity onPress={() => addItemToCart(props)}>
             <View
               style={{
-                justifyContent: "center",
                 borderRadius: 15,
                 flexDirection: "column",
                 alignItems: "center",
-                marginRight: "8%",
+                right: 10
               }}
             >
-              <FontAwesome5 name="shopping-cart" size={24} />
+              <FontAwesome5 name="shopping-cart" size={30} />
             </View>
           </TouchableOpacity>
         )}
       </View>
-    </>
+    </View>
   );
 }

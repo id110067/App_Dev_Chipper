@@ -44,7 +44,7 @@ export default function BuyerHome({ navigation }) {
                 marginTop: "5%",
               }}
             >
-              Looking for a protein {"\n"}rich diet?
+              Popular Products Near You
             </Text>
           </View>
           <ItemSlider />
@@ -55,10 +55,9 @@ export default function BuyerHome({ navigation }) {
                 fontSize: 18,
                 fontWeight: "bold",
                 marginLeft: "5%",
-                marginTop: "5%",
               }}
             >
-              Looking for a protein {"\n"}rich diet?
+              Recommended Products For You
             </Text>
           </View>
           <ItemSlider />

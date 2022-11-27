@@ -6,12 +6,14 @@ import {
   Alert,
   TouchableOpacity,
   ScrollView,
+  Image
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import BuyerItem from "../components/buyerHome/BuyerItem";
 import BuyerBottomTabs from "../components/buyerHome/BuyerBottomTabs";
 import {firebase} from "../config";
+import logo from "../assets/logo-removebg.png";
 
 export default function Search({ route, navigation }) {
   const [items, setItems] = useState([]);
@@ -73,8 +75,29 @@ export default function Search({ route, navigation }) {
   console.log(searchedItems);
 
   return (
-    <View style={{ marginTop: "10%", flex: 1 }}>
-      <View style={{ alignItems: "center", flex: 1 }}>
+    <View style={{ flex: 1 }}>
+    <TouchableOpacity
+        style={{
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+          textAlign: "center",
+          paddingTop: "3%",
+          backgroundColor: "#fff",
+          paddingBottom: '3%'
+        }}
+        onPress={() => navigation.navigate("BuyerHome")}
+      >
+        <Image
+          source={logo}
+          style={{ width: 35, height: 35, marginRight: "2%" }}
+        />
+        <Text style={{ fontWeight: "bold", fontSize: 24 }}>Chipper</Text>
+      </TouchableOpacity>
+      <View style={{alignItems: 'center', justifyContent: 'center'}}>
+        <Text style={{marginTop: '3%', fontWeight: 'bold', fontSize: 32}}>Search</Text>
+      </View>
+      <View style={{ alignItems: "center", flex: 1, marginTop: '10%' }}>
         <Controller
           control={control}
           rules={{

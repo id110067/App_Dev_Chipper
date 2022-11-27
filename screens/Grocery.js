@@ -15,6 +15,7 @@ import {
   removeFromCart,
 } from "../redux/cartReducer";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+import logo from "../assets/logo-removebg.png";
 const API_URL = "http://10.68.11.73:8004";
 
 const Grocery = ({ navigation }) => {
@@ -22,26 +23,23 @@ const Grocery = ({ navigation }) => {
   // console.log(cart)
   const dispatch = useDispatch();
   const [total, setTotal] = useState(0);
-  
+
   const displayTotal = () => {
     let total = 0;
     cart.forEach((item) => {
-      console.log("item", item)
+      console.log("item", item);
       if (item.ordersPlaced + item.quantity >= item.quantityFifteen) {
-        total += (item.priceFifteen * item.quantity);
-      }
-      else if (item.ordersPlaced + item.quantity >= item.quantityTen) {
-        total += (item.priceTen * item.quantity);
-      }
-      else if (item.ordersPlaced + item.quantity >= item.quantityFive) {
-        total += (item.priceFive * item.quantity);
-      }
-      else {
-        total += (item.price * item.quantity);
+        total += item.priceFifteen * item.quantity;
+      } else if (item.ordersPlaced + item.quantity >= item.quantityTen) {
+        total += item.priceTen * item.quantity;
+      } else if (item.ordersPlaced + item.quantity >= item.quantityFive) {
+        total += item.priceFive * item.quantity;
+      } else {
+        total += item.price * item.quantity;
       }
     });
     return total;
-  }
+  };
 
   const increaseQuantity = (item) => {
     dispatch(incrementQuantity(item));
@@ -67,11 +65,41 @@ const Grocery = ({ navigation }) => {
   };
 
   const handleCheckoutClick = () => {
-      navigation.navigate("StripeApp", {total: displayTotal() * 100});
-  }
+    navigation.navigate("StripeApp", { total: displayTotal() * 100 });
+  };
 
   return (
-    <View style={{ flex: 1, marginTop: "5%" }}>
+    <View style={{ flex: 1 }}>
+      <TouchableOpacity
+        style={{
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+          textAlign: "center",
+          paddingTop: "3%",
+          backgroundColor: "#fff",
+          paddingBottom: "3%",
+        }}
+        onPress={() => navigation.navigate("BuyerHome")}
+      >
+        <Image
+          source={logo}
+          style={{ width: 35, height: 35, marginRight: "2%" }}
+        />
+        <Text style={{ fontWeight: "bold", fontSize: 24 }}>Chipper</Text>
+      </TouchableOpacity>
+      <View style={{ alignItems: "center", justifyContent: "center" }}>
+        <Text
+          style={{
+            marginTop: "3%",
+            fontWeight: "bold",
+            fontSize: 32,
+            marginBottom: "5%",
+          }}
+        >
+          Cart
+        </Text>
+      </View>
       <ScrollView>
         <View style={{ flex: 1 }}>
           {cart.map((item, index) => (

@@ -1,35 +1,59 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text } from 'react-native';
+import React, { useState, useEffect } from "react";
+import { View, Text, Image, TouchableOpacity } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import { firebase } from '../../config';
+import { firebase } from "../../config";
+import logo from "../../assets/logo-removebg.png";
+import { useNavigation } from "@react-navigation/native";
 
 export default function HomeHeader(props) {
+  const navigation = useNavigation();
   const [name, setName] = useState([]);
 
   useEffect(() => {
-    firebase.firestore().collection("users").doc(firebase.auth().currentUser.uid).get()
-    .then((snapshot) =>{
-      if(snapshot.exists){
-          setName(snapshot.data())
-          console.log("Name >> ", name.firstName)
-      }
-      else {
-        console.log('does not exist')
-      }
-  })
-  }, [])
+    firebase
+      .firestore()
+      .collection("users")
+      .doc(firebase.auth().currentUser.uid)
+      .get()
+      .then((snapshot) => {
+        if (snapshot.exists) {
+          setName(snapshot.data());
+          console.log("Name >> ", name.firstName);
+        } else {
+          console.log("does not exist");
+        }
+      });
+  }, []);
 
   return (
     <View>
+      <TouchableOpacity
+        style={{
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+          textAlign: "center",
+          paddingTop: "3%",
+          backgroundColor: "#fff",
+          paddingBottom: '3%'
+        }}
+        onPress={() => navigation.navigate("BuyerHome")}
+      >
+        <Image
+          source={logo}
+          style={{ width: 35, height: 35, marginRight: "2%" }}
+        />
+        <Text style={{ fontWeight: "bold", fontSize: 24 }}>Chipper</Text>
+      </TouchableOpacity>
       <Text
         style={{
           fontFamily: "Roboto",
           marginLeft: "5%",
           fontSize: 32,
-          marginTop: "5%",
+          marginTop: "3%",
         }}
       >
-        Good Morning, {name.firstName}
+        Welcome, {name.firstName}
       </Text>
       <View
         style={{
@@ -49,5 +73,5 @@ export default function HomeHeader(props) {
         </Text>
       </View>
     </View>
-  )
+  );
 }

@@ -13,6 +13,8 @@ import { firebase } from "../config";
 import profilePhoto from "../assets/profile-photo.png";
 import BuyerBottomTabs from "../components/buyerHome/BuyerBottomTabs";
 import SellerBottomTabs from "../components/sellerHome/SellerBottomTabs";
+import logo from "../assets/logo-removebg.png";
+import chipper from "../assets/chipper.png";
 
 const Profile = ({ route, navigation}) => {
   if (route.params.whichProfile === "buyer") {
@@ -66,7 +68,7 @@ const BuyerProfile = ({navigation}) => {
   }, []);
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, marginTop: '15%' }}>
     <ScrollView contentInsetAdjustmentBehavior="automatic">
       <SafeAreaView style={styles.container}>
         <View style={{ position: "absolute", right: 20 }}>
@@ -75,7 +77,7 @@ const BuyerProfile = ({navigation}) => {
               firebase.auth().signOut();
             }}
             style={{
-              marginTop: 50,
+              marginTop: 20,
               height: 40,
               width: 100,
               backgroundColor: "black",
@@ -139,6 +141,11 @@ const BuyerProfile = ({navigation}) => {
               Change Password
             </Text>
           </TouchableOpacity>
+          <View style={{flexDirection: 'row', alignItems: 'center', marginTop: '10%'}}>
+            <Image source={logo} style={{height: 50, width: 50, marginRight: '3%'}} />
+            <Image source={chipper} style={{height: 31, width: 122, marginTop: '2%'}} />
+          </View>
+          <Text style={{marginTop: '2%', fontWeight: 'bold'}}>Version 1.0.0</Text>
         </View>
       </SafeAreaView>
     </ScrollView>
@@ -253,6 +260,9 @@ const SellerProfile = ({navigation}) => {
               Change Password
             </Text>
           </TouchableOpacity>
+          <View>
+
+          </View>
         </View>
       </SafeAreaView>
     </ScrollView>
@@ -265,7 +275,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   button: {
-    marginTop: 30,
+    marginTop: 15,
     height: 50,
     width: 250,
     backgroundColor: "black",

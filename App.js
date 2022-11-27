@@ -6,6 +6,9 @@ import AppLogin from "./screens/AppLogin";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import { StripeProvider } from "@stripe/stripe-react-native";
+import { LogBox } from 'react-native';
+LogBox.ignoreLogs(['Warning: ...']);
+LogBox.ignoreAllLogs();
 
 export default function App() {
   return (
