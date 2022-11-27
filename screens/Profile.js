@@ -16,6 +16,8 @@ import { firebase } from "../config";
 import profilePhoto from "../assets/profile-photo.png";
 import BuyerBottomTabs from "../components/buyerHome/BuyerBottomTabs";
 import SellerBottomTabs from "../components/sellerHome/SellerBottomTabs";
+import logo from "../assets/logo-removebg.png";
+import chipper from "../assets/chipper.png";
 
 const Profile = ({ route, navigation }) => {
   if (route.params.whichProfile === "buyer") {
@@ -179,29 +181,29 @@ const BuyerProfile = ({ navigation }) => {
   }, []);
 
   return (
-    <View style={{ flex: 1 }}>
-      <ScrollView contentInsetAdjustmentBehavior="automatic">
-        <SafeAreaView style={styles.container}>
-          <View style={{ position: "absolute", right: 20 }}>
-            <TouchableOpacity
-              onPress={() => {
-                firebase.auth().signOut();
-              }}
-              style={{
-                marginTop: 50,
-                height: 40,
-                width: 100,
-                backgroundColor: "black",
-                alignItems: "center",
-                justifyContent: "center",
-                borderRadius: 10,
-              }}
-            >
-              <Text style={{ fontWeight: "bold", fontSize: 18, color: "orange" }}>
-                Sign Out
-              </Text>
-            </TouchableOpacity>
-          </View>
+    <View style={{ flex: 1, marginTop: '15%' }}>
+    <ScrollView contentInsetAdjustmentBehavior="automatic">
+      <SafeAreaView style={styles.container}>
+        <View style={{ position: "absolute", right: 20 }}>
+          <TouchableOpacity
+            onPress={() => {
+              firebase.auth().signOut();
+            }}
+            style={{
+              marginTop: 20,
+              height: 40,
+              width: 100,
+              backgroundColor: "black",
+              alignItems: "center",
+              justifyContent: "center",
+              borderRadius: 10,
+            }}
+          >
+            <Text style={{ fontWeight: "bold", fontSize: 18, color: "orange" }}>
+              Sign Out
+            </Text>
+          </TouchableOpacity>
+        </View>
 
           <View
             style={{
@@ -478,7 +480,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   button: {
-    marginTop: 30,
+    marginTop: 15,
     height: 50,
     width: 250,
     backgroundColor: "black",

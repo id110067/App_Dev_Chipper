@@ -1,4 +1,4 @@
-import { View, Text, ScrollView } from "react-native";
+import { View, Text, ScrollView, Image } from "react-native";
 import React, { useEffect, useState } from "react";
 import HomeHeader from "../components/buyerHome/HomeHeader";
 import ItemSlider from "../components/buyerHome/ItemSlider";
@@ -42,7 +42,7 @@ export default function BuyerHome({ navigation }) {
                 marginTop: "5%",
               }}
             >
-              Looking for a protein {"\n"}rich diet?
+              Popular Products Near You
             </Text>
           </View>
           <ItemSlider />
@@ -53,10 +53,9 @@ export default function BuyerHome({ navigation }) {
                 fontSize: 18,
                 fontWeight: "bold",
                 marginLeft: "5%",
-                marginTop: "5%",
               }}
             >
-              Looking for a protein {"\n"}rich diet?
+              Recommended Products For You
             </Text>
           </View>
           <ItemSlider />

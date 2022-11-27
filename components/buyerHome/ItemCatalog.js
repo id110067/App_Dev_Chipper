@@ -69,7 +69,7 @@ export default function ItemCatalog() {
               priceFifteen={item.price * 0.85}
               image={item.image}
               imageHeight={250}
-              imageWidth={400}
+              imageWidth={380}
               seller={item.seller}
             />
           </View>

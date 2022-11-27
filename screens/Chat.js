@@ -1,24 +1,56 @@
-import { View, Text, ScrollView, TouchableOpacity, StatusBar, StyleSheet, FlatList, Image } from 'react-native';
-import React, { useState, useEffect } from 'react';
-import { firebase } from '../config';
+import {
+  View,
+  Text,
+  ScrollView,
+  TouchableOpacity,
+  StatusBar,
+  StyleSheet,
+  FlatList,
+  Image,
+} from "react-native";
+import React, { useState, useEffect } from "react";
+import { firebase } from "../config";
+import logo from "../assets/logo-removebg.png";
 
 import BuyerBottomTabs from "../components/buyerHome/BuyerBottomTabs";
 
 const Chat = ({ navigation }) => {
-  const [users, setUsers] = useState(null)
+  const [users, setUsers] = useState(null);
 
   const getUsers = async () => {
-    const querySanp = await firebase.firestore().collection('users').where('uid', '!=', firebase.auth().currentUser.uid).get()
-    const allUsers = querySanp.docs.map(docSnap => docSnap.data())
-    setUsers(allUsers)
-  }
+    const querySanp = await firebase
+      .firestore()
+      .collection("users")
+      .where("uid", "!=", firebase.auth().currentUser.uid)
+      .get();
+    const allUsers = querySanp.docs.map((docSnap) => docSnap.data());
+    setUsers(allUsers);
+  };
 
   useEffect(() => {
-    getUsers()
-  }, [])
+    getUsers();
+  }, []);
 
   return (
-    <View style={{ flex: 1, marginTop: "5%" }}>
+    <View style={{ flex: 1 }}>
+      <TouchableOpacity
+        style={{
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+          textAlign: "center",
+          paddingTop: "3%",
+          backgroundColor: "#fff",
+          paddingBottom: "3%",
+        }}
+        onPress={() => navigation.navigate("BuyerHome")}
+      >
+        <Image
+          source={logo}
+          style={{ width: 35, height: 35, marginRight: "2%" }}
+        />
+        <Text style={{ fontWeight: "bold", fontSize: 24 }}>Chipper</Text>
+      </TouchableOpacity>
       <ScrollView>
         <View style={{ flex: 1 }}>
           <StatusBar />
@@ -32,8 +64,8 @@ const Chat = ({ navigation }) => {
                     <View style={styles.card} >
                       <Image style={styles.userImageST} source={{ uri: item.profile }} />
                       <View style={styles.textArea}>
-                        <Text style={styles.nameText} >{item.name}</Text>
-                        <Text style={styles.msgContent} >{item.email}</Text>
+                        <Text style={styles.nameText}>{item.name}</Text>
+                        <Text style={styles.msgContent}>{item.email}</Text>
                       </View>
                     </View>
                   </TouchableOpacity>
@@ -47,36 +79,36 @@ const Chat = ({ navigation }) => {
         <BuyerBottomTabs navigation={navigation} />
       </View>
     </View>
-  )
-}
+  );
+};
 
 export default Chat;
 
 const styles = StyleSheet.create({
   Contain: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   Container: {
     marginTop: 32,
     paddingHorizontal: 24,
   },
   card: {
-    width: '100%',
-    height: 'auto',
+    width: "100%",
+    height: "auto",
     marginHorizontal: 4,
     marginVertical: 6,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
+    flexDirection: "row",
+    flexWrap: "wrap",
   },
   sectionTitle: {
     fontSize: 24,
-    fontWeight: '600',
+    fontWeight: "600",
   },
   imageContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   userImage: {
     paddingTop: 15,
@@ -88,25 +120,25 @@ const styles = StyleSheet.create({
     borderRadius: 25,
   },
   textArea: {
-    flexDirection: 'column',
-    justifyContent: 'center',
+    flexDirection: "column",
+    justifyContent: "center",
     padding: 5,
     paddingLeft: 10,
     width: 300,
-    backgroundColor: 'transparent',
+    backgroundColor: "transparent",
     borderBottomWidth: 1,
-    borderBottomColor: '#cccccc',
+    borderBottomColor: "#cccccc",
   },
   userText: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   nameText: {
     fontSize: 14,
     fontWeight: '900',
   },
   msgTime: {
-    textAlign: 'right',
+    textAlign: "right",
     fontSize: 11,
     marginTop: -20,
   },
@@ -116,9 +148,9 @@ const styles = StyleSheet.create({
   sectionDescription: {
     marginTop: 8,
     fontSize: 18,
-    fontWeight: '400',
+    fontWeight: "400",
   },
   highlight: {
-    fontWeight: '700',
+    fontWeight: "700",
   },
 });

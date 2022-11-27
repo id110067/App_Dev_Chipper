@@ -1,9 +1,14 @@
-import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native'
+import { View, Text, TouchableOpacity, TextInput, StyleSheet, Image } from 'react-native'
 import React, { useState } from 'react'
 import { firebase } from '../../config'
 import { ScrollView } from 'react-native'
+import logo from "../../assets/logo-removebg.png";
+import chipper from "../../assets/chipper.png";
+import slogan from "../../assets/slogan.png";
+import { useNavigation } from "@react-navigation/native";
 
 const Registration = () => {
+  const navigation = useNavigation();
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [firstName, setFirstName] = useState('')
@@ -31,10 +36,26 @@ const Registration = () => {
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
       <View style={styles.container}>
-        <Text style={{ fontWeight: 'bold', fontSize: 23, }}>
+      <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            marginBottom: "5%",
+          }}
+        >
+          <Image
+            source={logo}
+            style={{ width: 75, height: 75, marginRight: "5%" }}
+          />
+          <Image source={chipper} style={{ marginTop: "3%" }} />
+        </View>
+        <View style={{marginBottom: '10%'}}>
+          <Image source={slogan} />
+        </View>
+        <Text style={{ fontWeight: 'bold', fontSize: 30, }}>
           Register Here!
         </Text>
-        <View style={{ marginTop: 40 }}>
+        <View style={{ marginTop: 20 }}>
           <TextInput style={styles.textInput}
             placeholder="First Name"
             onChangeText={(firstName) => setFirstName(firstName)}
@@ -66,6 +87,14 @@ const Registration = () => {
         >
           <Text style={{ fontWeight: 'bold', fontSize: 22, color: '#fff' }}>Register</Text>
         </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("Login")}
+          style={{ marginTop: 5 }}
+        >
+          <Text style={{ fontSize: 16, fontWeight: "bold" }}>
+            Already have an account? Login here
+          </Text>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   )
@@ -77,7 +106,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    marginTop: 80,
+    marginTop: 50,
   },
   textInput: {
     paddingTop: 20,
