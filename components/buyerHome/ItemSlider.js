@@ -17,7 +17,10 @@ export default function ItemSlider() {
             price,
             productName,
             quantityAvailable,
+            quantityFifteen,
+            quantityFive,
             quantitySold,
+            quantityTen,
             seller,
           } = doc.data();
           newItems.push({
@@ -26,7 +29,10 @@ export default function ItemSlider() {
             price,
             productName,
             quantityAvailable,
+            quantityFifteen,
+            quantityFive,
             quantitySold,
+            quantityTen,
             seller,
           });
         });
@@ -56,6 +62,12 @@ export default function ItemSlider() {
                 price={item.price}
                 ordersPlaced={item.quantitySold}
                 quantityAvailable={item.quantityAvailable}
+                quantityFive={item.quantityFive}
+                quantityTen={item.quantityTen}
+                quantityFifteen={item.quantityFifteen}
+                priceFive={item.price * 0.95}
+                priceTen={item.price * 0.9}
+                priceFifteen={item.price * 0.85}
                 image={item.image}
                 imageHeight={250}
                 imageWidth={300}
