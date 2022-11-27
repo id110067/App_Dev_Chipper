@@ -50,8 +50,6 @@ const StripeApp = ({ route, navigation }) => {
       });
     });
 
-    console.log()
-
     var order = {
       address: address,
       email: email,

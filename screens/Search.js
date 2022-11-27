@@ -72,8 +72,6 @@ export default function Search({ route, navigation }) {
     setSearchedItems(filteredItems);
   }, [search]);
 
-  console.log(searchedItems);
-
   return (
     <View style={{ flex: 1 }}>
     <TouchableOpacity

@@ -23,9 +23,7 @@ export default function BuyerHome({ navigation }) {
       let location = await Location.getCurrentPositionAsync({});
       let address = await Location.reverseGeocodeAsync(location.coords);
       setLocation(location);
-      console.log(address[0].city)
       setCity(address[0].city)
-      console.log(location)
     })();
   }, []);
   

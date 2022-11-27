@@ -24,6 +24,7 @@ const Registration = () => {
             lastName,
             email,
             uid: firebase.auth().currentUser.uid,
+            profile: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
           })
       })
       .catch((error) => {

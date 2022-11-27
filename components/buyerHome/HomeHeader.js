@@ -10,20 +10,16 @@ export default function HomeHeader(props) {
   const [name, setName] = useState([]);
 
   useEffect(() => {
-    firebase
-      .firestore()
-      .collection("users")
-      .doc(firebase.auth().currentUser.uid)
-      .get()
-      .then((snapshot) => {
-        if (snapshot.exists) {
-          setName(snapshot.data());
-          console.log("Name >> ", name.firstName);
-        } else {
-          console.log("does not exist");
-        }
-      });
-  }, []);
+    firebase.firestore().collection("users").doc(firebase.auth().currentUser.uid).get()
+    .then((snapshot) =>{
+      if(snapshot.exists){
+          setName(snapshot.data())
+      }
+      else {
+        console.log('does not exist')
+      }
+  })
+  }, [])
 
   return (
     <View>

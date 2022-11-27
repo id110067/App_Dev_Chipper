@@ -14,7 +14,6 @@ import { addToCart, removeFromCart } from "../../redux/cartReducer";
 export default function BuyerItem(props) {
   const cart = useSelector((state) => state.cart.cart);
   const dispatch = useDispatch();
-  // console.log(props)
 
   const addItemToCart = (item) => {
     dispatch(addToCart(item));
