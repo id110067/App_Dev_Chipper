@@ -45,22 +45,12 @@ function AppLogin() {
 
   if (!user) {
     return (
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Login"
-          component={Login}
-          options={{
-            headerTitle: () => <Header name="Chipper" />,
-            headerStyle: {
-              height: 150,
-              borderBottomLeftRadius: 50,
-              borderBottomRightRadius: 50,
-              backgroundColor: "#000",
-              shadowColor: "#eee",
-              elevation: 25,
-            },
-          }}
-        />
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
+        <Stack.Screen name="Login" component={Login} />
         <Stack.Screen
           name="Registration"
           component={Registration}
@@ -81,7 +71,9 @@ function AppLogin() {
   }
 
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{
+      headerShown: false,
+    }}>
       <Stack.Screen
         name="BuySell"
         component={BuySell}
