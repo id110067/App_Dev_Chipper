@@ -104,7 +104,6 @@ const styles = StyleSheet.create({
   nameText: {
     fontSize: 14,
     fontWeight: '900',
-    fontFamily: 'Verdana'
   },
   msgTime: {
     textAlign: 'right',
