@@ -30,7 +30,7 @@ const Chat = ({ navigation }) => {
                 renderItem={({ item }) => (
                   <TouchableOpacity onPress={() => navigation.navigate('Chats', { name: item.name, uid: item.uid })} >
                     <View style={styles.card} >
-                      <Image style={styles.userImageST} source={{ uri: 'https://placeimg.com/140/140/any' }} />
+                      <Image style={styles.userImageST} source={{ uri: item.profile }} />
                       <View style={styles.textArea}>
                         <Text style={styles.nameText} >{item.name}</Text>
                         <Text style={styles.msgContent} >{item.email}</Text>
