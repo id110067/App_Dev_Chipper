@@ -1,4 +1,4 @@
-import { View, Text, ScrollView } from "react-native";
+import { View, Text, ScrollView, Image } from "react-native";
 import React, { useEffect, useState } from "react";
 import HomeHeader from "../components/buyerHome/HomeHeader";
 import ItemSlider from "../components/buyerHome/ItemSlider";
