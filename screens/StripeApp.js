@@ -16,7 +16,7 @@ import { firebase } from "../config";
 import { removeFromCart } from "../redux/cartReducer";
 
 //ADD localhost address of your server
-const API_URL = "http://10.68.11.73:8004";
+const API_URL = "http://10.68.223.2:8006";
 
 const StripeApp = ({ route, navigation }) => {
   const cart = useSelector((state) => state.cart.cart);
