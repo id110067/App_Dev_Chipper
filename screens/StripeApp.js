@@ -10,13 +10,18 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
-import { CardField, useConfirmPayment } from "@stripe/stripe-react-native";
+import {
+  CardField,
+  useConfirmPayment,
+  CardForm,
+} from "@stripe/stripe-react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { firebase } from "../config";
 import { removeFromCart } from "../redux/cartReducer";
+import logo from "../assets/logo-removebg.png";
 
 //ADD localhost address of your server
-const API_URL = "http://10.68.223.2:8006";
+const API_URL = "http://10.68.11.73:8006";
 
 const StripeApp = ({ route, navigation }) => {
   const cart = useSelector((state) => state.cart.cart);
@@ -65,7 +70,7 @@ const StripeApp = ({ route, navigation }) => {
       .add(order)
       .then((snapshot) => {
         order.id = snapshot.id;
-        orderID=order.id;
+        orderID = order.id;
         snapshot.set(order);
       })
       .then(() => {
@@ -138,6 +143,35 @@ const StripeApp = ({ route, navigation }) => {
 
   return (
     <ScrollView>
+      <TouchableOpacity
+        style={{
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+          textAlign: "center",
+          paddingTop: "3%",
+          backgroundColor: "#fff",
+          paddingBottom: "3%",
+        }}
+        onPress={() => navigation.navigate("BuyerHome")}
+      >
+        <Image
+          source={logo}
+          style={{ width: 35, height: 35, marginRight: "2%" }}
+        />
+        <Text style={{ fontWeight: "bold", fontSize: 24 }}>Chipper</Text>
+      </TouchableOpacity>
+      <View style={{ alignItems: "center", justifyContent: "center" }}>
+        <Text
+          style={{
+            marginTop: "3%",
+            fontWeight: "bold",
+            fontSize: 32,
+          }}
+        >
+          Checkout
+        </Text>
+      </View>
       <View style={styles.container}>
         <View>
           <View style={{ flex: 1 }}>
@@ -224,6 +258,20 @@ const StripeApp = ({ route, navigation }) => {
             </View>
           </View>
         </View>
+        <View
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+            marginTop: "5%",
+            marginBottom: "5%",
+          }}
+        >
+          <Text
+            style={{ fontFamily: "Roboto", fontSize: 20, fontWeight: "bold" }}
+          >
+            Enter Customer and Delivery Info
+          </Text>
+        </View>
         <TextInput
           autoCapitalize="none"
           placeholder="E-mail"
@@ -244,6 +292,19 @@ const StripeApp = ({ route, navigation }) => {
           onChange={(value) => setMobile(value.nativeEvent.text)}
           style={styles.input}
         />
+        <View
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+            marginTop: "2%",
+          }}
+        >
+          <Text
+            style={{ fontFamily: "Roboto", fontSize: 20, fontWeight: "bold" }}
+          >
+            Enter Credit/Debit Card Details
+          </Text>
+        </View>
         <CardField
           postalCodeEnabled={true}
           placeholder={{
@@ -255,7 +316,12 @@ const StripeApp = ({ route, navigation }) => {
             setCardDetails(cardDetails);
           }}
         />
-        <Button onPress={handlePayPress} title="Pay" disabled={loading} />
+        <Button
+          onPress={handlePayPress}
+          title="Pay"
+          disabled={loading}
+          style={{ marginBottom: "10%" }}
+        />
       </View>
     </ScrollView>
   );
@@ -269,12 +335,12 @@ const styles = StyleSheet.create({
     margin: 20,
   },
   input: {
-    backgroundColor: "#efefefef",
-
+    backgroundColor: "#DDDDDD",
     borderRadius: 8,
     fontSize: 20,
     height: 50,
     padding: 10,
+    marginBottom: 20,
   },
   card: {
     backgroundColor: "#efefefef",

@@ -9,6 +9,7 @@ import {
 import React, { useState, useEffect } from "react";
 import BuyerBottomTabs from "../components/buyerHome/BuyerBottomTabs";
 import { firebase } from "../config";
+import logo from "../assets/logo-removebg.png";
 
 export default function ManageOrder({ route, navigation }) {
   const [name, setName] = useState([]);
@@ -70,7 +71,37 @@ export default function ManageOrder({ route, navigation }) {
   }
 
   return (
-    <View style={{ flex: 1, marginTop: "5%" }}>
+    <View style={{ flex: 1,  }}>
+        <TouchableOpacity
+        style={{
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+          textAlign: "center",
+          paddingTop: "3%",
+          backgroundColor: "#fff",
+          paddingBottom: "3%",
+        }}
+        onPress={() => navigation.navigate("BuyerHome")}
+      >
+        <Image
+          source={logo}
+          style={{ width: 35, height: 35, marginRight: "2%" }}
+        />
+        <Text style={{ fontWeight: "bold", fontSize: 24 }}>Chipper</Text>
+      </TouchableOpacity>
+      <View style={{ alignItems: "center", justifyContent: "center" }}>
+        <Text
+          style={{
+            marginTop: "3%",
+            fontWeight: "bold",
+            fontSize: 32,
+            marginBottom: "5%",
+          }}
+        >
+          Manage Order
+        </Text>
+      </View>
       <ScrollView>
         <View style={{ flex: 1 }}>
           <View
@@ -95,27 +126,27 @@ export default function ManageOrder({ route, navigation }) {
                 Order ID: {route.params.item.id}
               </Text>
               <Text
-                style={{ fontSize: 18, color: "#5FD068", fontWeight: "bold" }}
+                style={{ fontSize: 18, color: "#B2B2B2", fontWeight: "bold" }}
               >
                 Order Date: {route.params.item.orderDate}
               </Text>
               <Text
-                style={{ fontSize: 18, color: "#5FD068", fontWeight: "bold" }}
+                style={{ fontSize: 18, color: "#B2B2B2", fontWeight: "bold" }}
               >
                 Customer Name: {name.firstName + " " + name.lastName}
               </Text>
               <Text
-                style={{ fontSize: 18, color: "#5FD068", fontWeight: "bold" }}
+                style={{ fontSize: 18, color: "#B2B2B2", fontWeight: "bold" }}
               >
                 Address: {route.params.item.address}
               </Text>
               <Text
-                style={{ fontSize: 18, color: "#5FD068", fontWeight: "bold" }}
+                style={{ fontSize: 18, color: "#B2B2B2", fontWeight: "bold" }}
               >
                 Mobile Number: {route.params.item.mobileNumber}
               </Text>
               <Text
-                style={{ fontSize: 18, color: "#5FD068", fontWeight: "bold" }}
+                style={{ fontSize: 18, color: "#B2B2B2", fontWeight: "bold" }}
               >
                 Email: {route.params.item.email}
               </Text>
@@ -174,7 +205,7 @@ export default function ManageOrder({ route, navigation }) {
                       fontWeight: "bold",
                     }}
                   >
-                    Quantity: {product.quantity}
+                    Quantity: {product.quantitySold}
                   </Text>
                   <Text
                     style={{

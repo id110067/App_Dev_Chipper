@@ -15,7 +15,7 @@ import {
           source={{
             uri: props.image,
           }}
-          style={{ width: "100%", height: props.imageHeight, width: props.imageWidth }}
+          style={{ width: "100%", height: props.imageHeight, width: props.imageWidth, borderRadius: 10 }}
         />
         <View
           style={{

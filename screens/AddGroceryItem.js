@@ -1,8 +1,9 @@
-import { View, Text, TextInput, TouchableOpacity, Alert } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, Alert, Image } from "react-native";
 import React, { useState, useEffect } from "react";
 // import { useForm, Controller } from "react-hook-form";
 import SellerBottomTabs from "../components/sellerHome/SellerBottomTabs";
 import { firebase } from "../config";
+import logo from "../assets/logo-removebg.png";
 
 const AddGroceryItem = ({ navigation }) => {
   const [productName, setProductName] = useState("");
@@ -60,7 +61,37 @@ const AddGroceryItem = ({ navigation }) => {
   }
 
   return (
-    <View style={{ marginTop: "10%", flex: 1 }}>
+    <View style={{ flex: 1 }}>
+          <TouchableOpacity
+        style={{
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+          textAlign: "center",
+          paddingTop: "3%",
+          backgroundColor: "#fff",
+          paddingBottom: "3%",
+        }}
+        onPress={() => navigation.navigate("BuyerSell")}
+      >
+        <Image
+          source={logo}
+          style={{ width: 35, height: 35, marginRight: "2%" }}
+        />
+        <Text style={{ fontWeight: "bold", fontSize: 24 }}>Chipper</Text>
+      </TouchableOpacity>
+      <View style={{ alignItems: "center", justifyContent: "center" }}>
+        <Text
+          style={{
+            marginTop: "5%",
+            fontWeight: "bold",
+            fontSize: 32,
+            marginBottom: "5%",
+          }}
+        >
+          Add Grocery Item
+        </Text>
+      </View>
       <View style={{ alignItems: "center", flex: 1 }}>
         <TextInput
           style={{

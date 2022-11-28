@@ -55,7 +55,7 @@ export default function ItemCatalog() {
                 ordersPlaced={item.quantitySold}
                 image={item.image}
                 imageHeight={250}
-                imageWidth={400}
+                imageWidth={380}
               />
             </View>
           </TouchableOpacity>

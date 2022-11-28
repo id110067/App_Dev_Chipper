@@ -2,6 +2,7 @@ import { View, Text, ScrollView, Image, TouchableOpacity } from "react-native";
 import React, { useState, useEffect } from "react";
 import { firebase } from "../config";
 import BuyerBottomTabs from "../components/buyerHome/BuyerBottomTabs";
+import logo from "../assets/logo-removebg.png";
 
 export default function ViewOrders({ navigation }) {
   const [orders, setOrders] = useState([]);
@@ -39,7 +40,37 @@ export default function ViewOrders({ navigation }) {
   }, []);
 
   return (
-    <View style={{ flex: 1, marginTop: "5%" }}>
+    <View style={{ flex: 1, }}>
+    <TouchableOpacity
+        style={{
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+          textAlign: "center",
+          paddingTop: "3%",
+          backgroundColor: "#fff",
+          paddingBottom: "3%",
+        }}
+        onPress={() => navigation.navigate("BuyerHome")}
+      >
+        <Image
+          source={logo}
+          style={{ width: 35, height: 35, marginRight: "2%" }}
+        />
+        <Text style={{ fontWeight: "bold", fontSize: 24 }}>Chipper</Text>
+      </TouchableOpacity>
+      <View style={{ alignItems: "center", justifyContent: "center" }}>
+        <Text
+          style={{
+            marginTop: "3%",
+            fontWeight: "bold",
+            fontSize: 32,
+            marginBottom: "5%",
+          }}
+        >
+          View Orders
+        </Text>
+      </View>
       <ScrollView>
         <View style={{ flex: 1 }}>
           {orders.map((item, index) => (

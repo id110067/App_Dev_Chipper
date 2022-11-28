@@ -2,6 +2,7 @@ import { View, Text, ScrollView, Image, TouchableOpacity } from "react-native";
 import React, { useState, useEffect } from "react";
 import { firebase } from "../config";
 import SellerBottomTabs from "../components/sellerHome/SellerBottomTabs";
+import logo from "../assets/logo-removebg.png";
 
 export default function ViewPickupOrders({ navigation }) {
   const [orders, setOrders] = useState([]);
@@ -39,12 +40,44 @@ export default function ViewPickupOrders({ navigation }) {
   }, []);
 
   return (
-    <View style={{ flex: 1, marginTop: "5%" }}>
+    <View style={{ flex: 1 }}>
+      <TouchableOpacity
+        style={{
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+          textAlign: "center",
+          paddingTop: "3%",
+          backgroundColor: "#fff",
+          paddingBottom: "3%",
+        }}
+        onPress={() => navigation.navigate("BuyerSell")}
+      >
+        <Image
+          source={logo}
+          style={{ width: 35, height: 35, marginRight: "2%" }}
+        />
+        <Text style={{ fontWeight: "bold", fontSize: 24 }}>Chipper</Text>
+      </TouchableOpacity>
+      <View style={{ alignItems: "center", justifyContent: "center" }}>
+        <Text
+          style={{
+            marginTop: "5%",
+            fontWeight: "bold",
+            fontSize: 32,
+            marginBottom: "3%",
+          }}
+        >
+          View Pickup Orders
+        </Text>
+      </View>
       <ScrollView>
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, marginTop: "3%" }}>
           {orders.map((item, index) => (
             <TouchableOpacity
-              onPress={() => navigation.navigate("ManagePickupOrders", { item })}
+              onPress={() =>
+                navigation.navigate("ManagePickupOrders", { item })
+              }
               key={index}
             >
               <View
