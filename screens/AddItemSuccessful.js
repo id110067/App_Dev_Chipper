@@ -1,7 +1,7 @@
 import { View, Text, Image } from "react-native";
 import React from "react";
 import done from "../assets/done.png";
-import BuyerBottomTabs from "../components/buyerHome/BuyerBottomTabs";
+import SellerBottomTabs from "../components/sellerHome/SellerBottomTabs";
 
 export default function AddItemSuccessful({ navigation }) {
   return (
@@ -28,7 +28,7 @@ export default function AddItemSuccessful({ navigation }) {
         <Image source={done} style={{ marginTop: "20%" }} />
       </View>
       <View>
-        <BuyerBottomTabs navigation={navigation} />
+        <SellerBottomTabs navigation={navigation} />
       </View>
     </View>
   );

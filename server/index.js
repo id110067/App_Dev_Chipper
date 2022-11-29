@@ -11,7 +11,7 @@ import Stripe from "stripe";
 const stripe = Stripe(SECRET_KEY, { apiVersion: "2020-08-27" });
 
 app.listen(port, () => {
-    console.log(`Server listening at http://10.68.11.73:${port}`);
+    console.log(`Server listening at http://10.68.2.133:${port}`);
     }
 );
 

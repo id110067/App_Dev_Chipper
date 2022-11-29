@@ -21,7 +21,7 @@ import { removeFromCart } from "../redux/cartReducer";
 import logo from "../assets/logo-removebg.png";
 
 //ADD localhost address of your server
-const API_URL = "http://10.68.11.73:8006";
+const API_URL = "http://10.68.2.133:8006";
 
 const StripeApp = ({ route, navigation }) => {
   const cart = useSelector((state) => state.cart.cart);
